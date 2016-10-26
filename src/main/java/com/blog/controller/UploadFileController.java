@@ -61,7 +61,7 @@ public class UploadFileController {
 //                return "{\"success\": 0,\"message\": \"请上传图片，允许格式为jpg、jpeg、ico、png、gif、bmp、webp\"}";
             }
             String newImgName = System.currentTimeMillis() + "." + suffix;
-            String rootPath = request.getSession().getServletContext().getRealPath("/upload/images/");
+            String rootPath = request.getSession().getServletContext().getRealPath("/WEB-INF/upload/images/");
             File filePath = new File(rootPath);
             if(!filePath.exists()){
                 filePath.mkdirs();
@@ -71,7 +71,8 @@ public class UploadFileController {
             FileUtils.copyInputStreamToFile(image.getInputStream(), realFile);
             imgResult.setSuccess(1);
             imgResult.setMessage("上传成功");
-            imgResult.setUrl(realFile.toString());
+            imgResult.setUrl("/upload/images/"+newImgName);
+//            imgResult.setUrl(rootPath+File.separator+newImgName);
             return imgResult;
 //            return "{\"success\": 1, \"message\":\"上传成功\",\"url\":\""+realFile + "\"}";
         }catch (Exception e){

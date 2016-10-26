@@ -44,8 +44,6 @@
 
 <script type="text/javascript">
     $(function() {
-        path = "<%=request.getContextPath()%>/editor/lib/";
-        console.log(path);
         editormd("test-editormd", {
             width   : "90%",
             height  : 640,

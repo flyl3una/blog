@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ include file="/WEB-INF/jsp/base/src.jsp"%>
 <div class="manage-left-list">
     <div id="show-info" class="list-item">
         <a href="../manage/index">网站信息</a>

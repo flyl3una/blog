@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>文章列表</title>
-    <%@ include file="/WEB-INF/jsp/base/src.jsp"%>
+    <%--<%@ include file="/WEB-INF/jsp/base/src.jsp"%>--%>
 </head>
 <body>
 <div class="manage-left">

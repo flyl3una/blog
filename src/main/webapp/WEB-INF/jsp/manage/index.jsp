@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>后台管理</title>
-<%@ include file="/WEB-INF/jsp/base/src.jsp"%>
+<%--<%@ include file="/WEB-INF/jsp/base/src.jsp"%>--%>
 
 </head>
 <body>
