@@ -3,8 +3,10 @@ package com.blog.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.blog.pojo.Article;
+import com.blog.pojo.Label;
 import com.blog.service.AdminService;
 import com.blog.service.ArticleService;
+import com.blog.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,8 @@ public class ManageController {
     private AdminService adminService;
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private LabelService labelService;
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(HttpSession session) {
@@ -69,8 +73,16 @@ public class ManageController {
     }
 
     @RequestMapping(value = "article_label", method = RequestMethod.GET)
-    public String article_label(){
+    public String article_label(Model model){
+        List<Label> labels = labelService.getAllLabels();
+        model.addAttribute("labels", labels);
         return "/manage/article_label";
+    }
+
+    @RequestMapping(value = "label", method = RequestMethod.POST)
+    public String submitLabel(Label label){
+        labelService.addLabel(label);
+        return "redirect:/manage/article_label";
     }
 
 }

@@ -9,10 +9,7 @@
 <html>
 <head>
     <title>发布新文章</title>
-    <%@ include file="/WEB-INF/jsp/base/src.jsp"%>
-    <link rel="stylesheet" href="/editor/css/editormd.css"/>
-    <script src="/js/jquery-3.0.0/jquery-3.0.0.min.js"></script>
-    <script src="/editor/editormd.min.js"></script>
+
 
 </head>
 <body>

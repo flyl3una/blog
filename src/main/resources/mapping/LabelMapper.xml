@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.dao.LabelDao">
+    <resultMap id="Label" type="com.blog.pojo.Label">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getAllLabels" resultMap="Label">
+        select * from label;
+    </select>
+
+    <insert id="addLabel" parameterType="com.blog.pojo.Label">
+        insert INTO label(name) VALUES (#{name})
+    </insert>
+</mapper>

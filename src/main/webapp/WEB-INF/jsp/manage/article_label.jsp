@@ -18,6 +18,17 @@
 <div class="manage-right">
     right
     <div class="content">内容</div>
+    标签
+    <form action="/manage/label" method="post">
+        名称<input type="text" name="name">
+        <input type="submit" value="提交">
+    </form>
+    <table>
+        <tr><th>label</th></tr>
+        <c:forEach var="label" items="${labels}" varStatus="status">
+            <tr><td>${label.name}</td></tr>
+        </c:forEach>
+    </table>
 </div>
 </body>
 </html>

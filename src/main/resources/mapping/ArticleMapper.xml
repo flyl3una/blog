@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.dao.ArticleDao" >
 
-    <resultMap id="Articles" type="com.blog.pojo.Article">
-        <id column="id" property="id"/>
+    <resultMap id="Article" type="com.blog.pojo.Article">
+        <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="content" column="content"/>
         <result property="createTime" column="create_time"/>
@@ -13,7 +13,7 @@
         INSERT INTO article(title, content) VALUES (#{title}, #{content})
     </select>
 
-    <select id="getAllArticle" resultMap="Articles">
+    <select id="getAllArticle" resultMap="Article">
         select * from article
     </select>
 
