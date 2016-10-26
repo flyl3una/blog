@@ -9,20 +9,20 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
     
-    <select id="addArticle" parameterType="com.blog.pojo.Article">
+    <insert id="addArticle" parameterType="com.blog.pojo.Article">
         INSERT INTO article(title, content) VALUES (#{title}, #{content})
-    </select>
+    </insert>
 
     <select id="getAllArticle" resultMap="Article">
         select * from article
     </select>
 
-    <select id="updateArticle" parameterType="com.blog.pojo.Article">
+    <update id="updateArticle" parameterType="com.blog.pojo.Article">
         UPDATE article set title=#{title}, content = #{content} where id=#{id}
-    </select>
+    </update>
 
-    <select id="deleteArticle" parameterType="com.blog.pojo.Article">
+    <delete id="deleteArticle" parameterType="com.blog.pojo.Article">
         delete from article where id=#{id}
-    </select>
+    </delete>
 
 </mapper>

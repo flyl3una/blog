@@ -18,7 +18,7 @@
         <a href="../manage/write_article">写文章</a>
     </div>
     <div id="article-kind" class="list-item">
-        <a href="../manage/article_directory">文章目录</a>
+        <a href="../manage/article_directory">分类目录</a>
     </div>
     <div id="article-label" class="list-item">
         <a href="../manage/article_label">标签</a>
