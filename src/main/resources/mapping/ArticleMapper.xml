@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.dao.ArticleDao" >
+
+    <resultMap id="Articles" type="com.blog.pojo.Article">
+        <id column="id" property="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    
+    <select id="addArticle" parameterType="com.blog.pojo.Article">
+        INSERT INTO article(title, content) VALUES (#{title}, #{content})
+    </select>
+
+    <select id="getAllArticle" resultMap="Articles">
+        select * from article
+    </select>
+
+    <select id="updateArticle" parameterType="com.blog.pojo.Article">
+        UPDATE article set title=#{title}, content = #{content} where id=#{id}
+    </select>
+
+    <select id="deleteArticle" parameterType="com.blog.pojo.Article">
+        delete from article where id=#{id}
+    </select>
+
+</mapper>

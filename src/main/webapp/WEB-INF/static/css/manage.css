@@ -1,0 +1,33 @@
+
+.manage-left{
+    display: inline;
+    float: left;
+    width: 300px;
+    height: 100%;
+
+    background-color: azure;
+}
+
+.manage-right{
+    display: inline;
+    float: left;
+    width: 70%;
+    height: 100%;
+    font-size: 40px;
+}
+
+.list-item{
+    font-size: 30px;
+    color: cadetblue;
+    font-style: inherit;
+    border: aqua solid 1px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: beige;
+}
+
+.text{
+    border: 2px;
+    border-radius: 5px;
+
+}

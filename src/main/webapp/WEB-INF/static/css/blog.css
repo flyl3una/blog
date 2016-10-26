@@ -1,0 +1,41 @@
+
+.user-info{
+    display: inline;
+    float: left;
+    width: 20%;
+    height: 100%;
+    font-size: 50px;
+}
+
+.article-info{
+    display: inline;
+    float: left;
+    width: 50%;
+    height: 100%;
+    font-size: 40px;
+}
+
+.blog-info{
+    display: inline;
+    float: right;
+    width:30%;
+    height: 100%;
+    font-size:35px;
+}
+
+.room-head{
+    width: 100%;
+    height: 10%;
+    background-color: aquamarine;
+}
+
+.room-body{
+    width: 100%;
+    height: 80%;
+}
+
+.footer{
+    width: 100%;
+    height: 10%;
+    background-color: azure;
+}
