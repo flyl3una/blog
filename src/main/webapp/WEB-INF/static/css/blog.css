@@ -1,41 +1,90 @@
 
-.user-info{
-    display: inline;
-    float: left;
-    width: 20%;
-    height: 100%;
-    font-size: 50px;
+body {
+    background-color: #f5f5f5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
 }
 
-.article-info{
-    display: inline;
-    float: left;
-    width: 50%;
-    height: 100%;
-    font-size: 40px;
-}
-
-.blog-info{
-    display: inline;
-    float: right;
-    width:30%;
-    height: 100%;
-    font-size:35px;
-}
-
-.room-head{
+.head{
     width: 100%;
-    height: 10%;
-    background-color: aquamarine;
-}
-
-.room-body{
-    width: 100%;
-    height: 80%;
+    height: 30%;
+    background: #080808;
+    color: #fff;
 }
 
 .footer{
     width: 100%;
-    height: 10%;
+    height: 50px;
+    margin: auto 0 0 0;
     background-color: azure;
+}
+
+.content{
+    width: 1140px;
+    margin:50px auto 0 auto;
+    display: table;
+}
+
+.content-article{
+    float: left;
+    display: block;
+}
+
+.content-right{
+    float: right;
+    width: 300px;
+    display: block;
+}
+
+.a-article{
+    border:solid #eeeeee 1px;
+    width: 750px;
+    border-radius: 3px;
+    margin: 0 auto 30px auto;
+}
+
+.article-title{
+    font-size: 38px;
+    font-style: inherit;
+    padding: 0 auto 0 auto;
+    text-align: center;
+}
+
+.article-catalogue{
+    font-size: 34px;
+
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+    color: #57ad68;
+}
+
+.article-content{
+    font-size: 24px;
+    font-family:  normal;
+    font-family: Roboto Slab;
+}
+
+.article-time{
+    font-size:22px;
+    /*float: left;*/
+    display: block;
+    height: 20px;
+    color: #b1b1b1;
+    text-align: left;
+}
+
+.article-details{
+    font-size: 22px;
+    /*float: right;*/
+    display: block;
+    margin: -20px 20px 0 585px;
+    padding: 0 10px 0 10px;
+    color: #b1b1b1;
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    text-align: right;
 }
