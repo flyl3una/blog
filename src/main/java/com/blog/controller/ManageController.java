@@ -3,9 +3,11 @@ package com.blog.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.blog.pojo.Article;
+import com.blog.pojo.Catalogue;
 import com.blog.pojo.Label;
 import com.blog.service.AdminService;
 import com.blog.service.ArticleService;
+import com.blog.service.CatalogueService;
 import com.blog.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ public class ManageController {
     private ArticleService articleService;
     @Autowired
     private LabelService labelService;
+    @Autowired
+    private CatalogueService catalogueService;
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(HttpSession session) {
@@ -39,12 +43,12 @@ public class ManageController {
 
     @ResponseBody
     @RequestMapping(value = "show-article-list", method = RequestMethod.GET)
-    public String show_article_list(){
+    public String showArticleList(){
         return "aaa";
     }
 
     @RequestMapping(value = "article_list", method = RequestMethod.GET)
-    public String article_list(Model model){
+    public String articleList(Model model){
         List<Article> articles = articleService.getAllArticle();
 //        model.addAttribute("articles", JSON.toJSONString(articles));
         model.addAttribute("articles", articles);
@@ -52,12 +56,12 @@ public class ManageController {
     }
 
     @RequestMapping(value = "write_article", method = RequestMethod.GET)
-    public String write_article(){
+    public String writeArticle(){
         return "/manage/write_article";
     }
 
     @RequestMapping(value = "write_article", method = RequestMethod.POST)
-    public String write_article(Article article, Model model){
+    public String writeArticle(Article article, Model model){
         try{
             articleService.addArticle(article);
             return "redirect:/manage/article_list";
@@ -67,22 +71,29 @@ public class ManageController {
         }
     }
 
-    @RequestMapping(value = "article_article_directory", method = RequestMethod.GET)
-    public String article_kind(){
-        return "/manage/article_article_directory";
+    @RequestMapping(value = "article_catalogue", method = RequestMethod.GET)
+    public String articleCatalogue(Model model){
+        List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+        model.addAttribute("catalogues", catalogues);
+        return "/manage/article_catalogue";
     }
 
     @RequestMapping(value = "article_label", method = RequestMethod.GET)
-    public String article_label(Model model){
+    public String articleLabel(Model model){
         List<Label> labels = labelService.getAllLabels();
         model.addAttribute("labels", labels);
         return "/manage/article_label";
     }
 
-    @RequestMapping(value = "label", method = RequestMethod.POST)
+    @RequestMapping(value = "add-label", method = RequestMethod.POST)
     public String submitLabel(Label label){
         labelService.addLabel(label);
         return "redirect:/manage/article_label";
     }
 
+    @RequestMapping(value = "add-catalogue", method = RequestMethod.POST)
+    public String submitCatalogue(Catalogue catalogue){
+        catalogueService.addCatalogue(catalogue);
+        return "redirect:/manage/article_catalogue";
+    }
 }
