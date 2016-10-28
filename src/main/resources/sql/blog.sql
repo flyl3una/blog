@@ -17,6 +17,7 @@ CREATE DATABASE IF NOT EXISTS `blog` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `blog`;
 
 -- 导出  表 blog.admin 结构
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(36) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) CHARACTER SET latin1 NOT NULL,
@@ -33,24 +34,31 @@ INSERT INTO `admin` (`id`, `username`, `password`, `email`) VALUES
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- 导出  表 blog.article 结构
+DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `id` int(36) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `simple` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- 正在导出表  blog.article 的数据：~3 rows (大约)
+-- 正在导出表  blog.article 的数据：~4 rows (大约)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` (`id`, `title`, `content`, `create_time`) VALUES
-	(1, 'aaa', 'aaa', '2016-10-23 22:16:11'),
-	(2, 'bbac', 'ewrwqtq', '2016-10-24 20:29:52'),
-	(10, '', '<p><img src="/upload/images/1477489058903.jpg" alt=""></p>\r\n', '2016-10-26 21:38:04');
+INSERT INTO `article` (`id`, `title`, `content`, `simple`, `create_time`) VALUES
+	(11, '幅度萨芬', '<pre><code>热情放大撒幅度萨芬剁手发大方第三方倒萨到处撒\r\n热闻犬吠\r\n</code></pre><ol>\r\n<li>富士达</li><li>放大撒王菲<br> 热武器</li></ol>\r\n<ul>\r\n<li>奋斗的撒</li><li>放大撒</li><li>发的阿德</li></ul>\r\n<p>亲热</p>\r\n', '', '2016-10-28 21:07:25'),
+	(13, '热发电', '<pre><code>fda发热情方法\r\n</code></pre><ul>\r\n<li>放大撒</li><li>惹我欺负</li></ul>\r\n<ol>\r\n<li>热啊发的</li><li>反对法</li></ol>\r\n', 'fda发热情方法', '2016-10-28 21:27:43'),
+	(15, '热放大撒', '<pre><code>发达的\r\n放大few去\r\n</code></pre><ul>\r\n<li>热武器软武器</li><li>热风234</li></ul>\r\n<ol>\r\n<li>人放大撒</li><li>惹我发</li></ol>\r\n', '发达的\r\n放大few去\r\n\r\n\r\n\r\n\r\n', '2016-10-28 21:51:59'),
+	(16, '放大撒', '<pre><code>日期fda热情无法\r\n</code></pre><ul>\r\n<li>让我飞</li><li>热v自行车432</li></ul>\r\n<ol>\r\n<li>热度惹我欺负的</li><li>热物权法擦拭</li><li>vzfd惹我欺负</li></ol>\r\n', '\r\n\r\n\r\n\r\n\r\n', '2016-10-28 21:54:17'),
+	(17, '放大撒', '<pre><code>浮动球阀\r\n- 热武器\r\n</code></pre><ul>\r\n<li>热风</li></ul>\r\n<ol>\r\n<li>乳房肥大</li><li>人情味</li></ol>\r\n', '\r\n- 热武器\r\n\r\n\r\n\r\n\r\n', '2016-10-28 21:57:42'),
+	(18, '放大撒', '<pre><code>日发生大为人\r\n</code></pre><ul>\r\n<li>放大撒</li><li>热武器飞洒</li></ul>\r\n<ol>\r\n<li>4分啊</li><li>热啊发的</li></ol>\r\n', '日发生大为人\r\n\r\n\r\n\r\n\r\n', '2016-10-28 21:59:07'),
+	(19, '放大撒', '<pre><code>热丰富的\r\n</code></pre><ul>\r\n<li>热风热情434</li><li>发v出现</li></ul>\r\n<ol>\r\n<li>2奋斗的撒</li><li>热</li></ol>\r\n', '热丰富的', '2016-10-28 21:59:54');
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- 导出  表 blog.article_of_directory 结构
+DROP TABLE IF EXISTS `article_of_directory`;
 CREATE TABLE IF NOT EXISTS `article_of_directory` (
   `id` int(36) NOT NULL AUTO_INCREMENT,
   `article_id` int(36) DEFAULT NULL,
@@ -64,6 +72,7 @@ DELETE FROM `article_of_directory`;
 /*!40000 ALTER TABLE `article_of_directory` ENABLE KEYS */;
 
 -- 导出  表 blog.article_of_label 结构
+DROP TABLE IF EXISTS `article_of_label`;
 CREATE TABLE IF NOT EXISTS `article_of_label` (
   `id` int(36) NOT NULL AUTO_INCREMENT,
   `article_id` int(36) DEFAULT NULL,
@@ -77,13 +86,14 @@ DELETE FROM `article_of_label`;
 /*!40000 ALTER TABLE `article_of_label` ENABLE KEYS */;
 
 -- 导出  表 blog.catalogue 结构
+DROP TABLE IF EXISTS `catalogue`;
 CREATE TABLE IF NOT EXISTS `catalogue` (
   `id` int(36) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- 正在导出表  blog.catalogue 的数据：~0 rows (大约)
+-- 正在导出表  blog.catalogue 的数据：~2 rows (大约)
 DELETE FROM `catalogue`;
 /*!40000 ALTER TABLE `catalogue` DISABLE KEYS */;
 INSERT INTO `catalogue` (`id`, `name`) VALUES
@@ -92,6 +102,7 @@ INSERT INTO `catalogue` (`id`, `name`) VALUES
 /*!40000 ALTER TABLE `catalogue` ENABLE KEYS */;
 
 -- 导出  表 blog.label 结构
+DROP TABLE IF EXISTS `label`;
 CREATE TABLE IF NOT EXISTS `label` (
   `id` int(36) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,

@@ -7,7 +7,7 @@ body {
     -moz-font-feature-settings: "liga" on;
 }
 
-.head{
+.top{
     width: 100%;
     height: 30%;
     background: #080808;
@@ -53,17 +53,16 @@ body {
 }
 
 .article-catalogue{
-    font-size: 34px;
-
+    font-size: 32px;
+    padding: 0 25px 0 25px;
+    font-style: inherit;
     border: 1px solid #eeeeee;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #57ad68;
 }
 
 .article-content{
     font-size: 24px;
-    font-family:  normal;
-    font-family: Roboto Slab;
 }
 
 .article-time{
@@ -79,7 +78,7 @@ body {
     font-size: 22px;
     /*float: right;*/
     display: block;
-    margin: -20px 20px 0 585px;
+    margin: -30px 25px 0 585px;
     padding: 0 10px 0 10px;
     color: #b1b1b1;
     border: 1px solid #cccccc;
@@ -87,4 +86,8 @@ body {
     -moz-border-radius: 15px;
     border-radius: 15px;
     text-align: right;
+}
+
+a{
+    text-decoration:none
 }

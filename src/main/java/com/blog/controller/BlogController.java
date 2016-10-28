@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,5 +32,12 @@ public class BlogController {
         List<Article> articles = articleService.getAllArticle();
         model.addAttribute("articles", articles);
         return "/blog/index";
+    }
+
+    @RequestMapping(value = "/article", method = RequestMethod.GET)
+    public String article(@RequestParam(value = "id")int id, Model model){
+        Article article = articleService.findArticleById(id);
+        model.addAttribute("article", article);
+        return "/blog/article";
     }
 }

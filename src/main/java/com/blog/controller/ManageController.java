@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by fly_l on 2016/10/20.
@@ -36,8 +38,13 @@ public class ManageController {
     @Autowired
     private CatalogueService catalogueService;
 
-    @RequestMapping(value = "index", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(HttpSession session) {
+        return "/manage/index";
+    }
+
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String index1(HttpSession session) {
         return "/manage/index";
     }
 
@@ -63,6 +70,11 @@ public class ManageController {
     @RequestMapping(value = "write_article", method = RequestMethod.POST)
     public String writeArticle(Article article, Model model){
         try{
+            Pattern p = Pattern.compile("(<.*>)+");
+            Matcher m = p.matcher(article.getContent());
+            String simple = m.replaceAll("").trim();
+//            System.out.println(simple);
+            article.setSimple(simple);
             articleService.addArticle(article);
             return "redirect:/manage/article_list";
         }catch (Exception e){

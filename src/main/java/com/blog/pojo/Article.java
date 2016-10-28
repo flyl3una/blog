@@ -10,9 +10,16 @@ public class Article {
     private int id;
     private String title;
     private String content;
+    private String simple;
     private Time createTime;
 
-//    Article(){};
+    public String getSimple() {
+        return simple;
+    }
+
+    public void setSimple(String simple) {
+        this.simple = simple;
+    }
 
     public void setId(int id) {
         this.id = id;

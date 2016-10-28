@@ -15,4 +15,5 @@ public interface ArticleDao {
     public List<Article> getAllArticle();
     public void updateArticle(Article article);
     public void deleteArticle(Article article);
+    public Article findArticleById(int id);
 }

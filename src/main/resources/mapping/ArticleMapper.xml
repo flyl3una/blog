@@ -10,7 +10,7 @@
     </resultMap>
     
     <insert id="addArticle" parameterType="com.blog.pojo.Article">
-        INSERT INTO article(title, content) VALUES (#{title}, #{content})
+        INSERT INTO article(title, content, simple) VALUES (#{title}, #{content}, #{simple})
     </insert>
 
     <select id="getAllArticle" resultMap="Article">
@@ -24,5 +24,9 @@
     <delete id="deleteArticle" parameterType="com.blog.pojo.Article">
         delete from article where id=#{id}
     </delete>
+
+    <select id="findArticleById" parameterType="int" resultType="com.blog.pojo.Article">
+      SELECT * FROM article WHERE id=#{id}
+    </select>
 
 </mapper>
