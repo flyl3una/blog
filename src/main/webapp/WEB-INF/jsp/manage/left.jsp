@@ -9,19 +9,19 @@
 <%@ include file="/WEB-INF/jsp/base/src.jsp"%>
 <div class="manage-left-list">
     <div id="show-info" class="list-item">
-        <a href="../manage/index">网站信息</a>
+        <a href="../manage/index" style="text-decoration: none">网站信息</a>
     </div>
     <div id="show-article-list" class="list-item">
-        <a href="../manage/article_list">文章列表</a>
+        <a href="../manage/article_list" style="text-decoration: none">文章列表</a>
     </div>
     <div id="write-article" class="list-item">
-        <a href="../manage/write_article">写文章</a>
+        <a href="../manage/write_article" style="text-decoration: none">写文章</a>
     </div>
     <div id="article-kind" class="list-item">
-        <a href="../manage/article_catalogue">分类目录</a>
+        <a href="../manage/article_catalogue" style="text-decoration: none">分类目录</a>
     </div>
     <div id="article-label" class="list-item">
-        <a href="../manage/article_label">标签</a>
+        <a href="../manage/article_label" style="text-decoration: none">标签</a>
     </div>
 </div>
 

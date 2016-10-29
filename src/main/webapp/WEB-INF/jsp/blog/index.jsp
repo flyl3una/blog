@@ -27,17 +27,17 @@
                 <div class="article-title">
                     ${article.title}
                 </div>
-                <a class="article-catalogue">
+                <div class="label article-label">
                     c
-                </a>
-                <div class="article-content">
-                    content:${article.simple}...
+                </div>
+                <div class="article-simple">
+                    ${article.simple}...
                 </div>
                 <div>
                     <span class="article-time">
                         Post on: ${article.createTime}
                     </span>
-                    <a class="article-details" href="/article?id=${article.id}">
+                    <a class="article-details" href="/article?id=${article.id}" target="_blank" style="text-decoration: none">
                         阅读全文>>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
         </c:forEach>
     </div>
     <div class="content-right">
-        <h1>right</h1>
+        <%@include file="right.jsp"%>
     </div>
 </div>
 

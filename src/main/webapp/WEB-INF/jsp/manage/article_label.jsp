@@ -12,11 +12,11 @@
 </head>
 <body>
 <div class="manage-left">
-    left
+
     <%@include file="left.jsp"%>
 </div>
 <div class="manage-right">
-    right
+
     <div class="content">内容</div>
     标签
     <form action="/manage/add-label" method="post">

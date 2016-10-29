@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="manage-left">
-    left
+
     <%@include file="left.jsp"%>
 </div>
 <div class="manage-right">

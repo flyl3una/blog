@@ -14,12 +14,11 @@
 </head>
 <body>
 <div class="manage-left">
-    left
+
     <%@include file="left.jsp"%>
 </div>
 
 <div class="manage-right">
-    write article
     <form action="/manage/write_article" method="post">
         <div>标题</div>
         <input type="text" name="title">
