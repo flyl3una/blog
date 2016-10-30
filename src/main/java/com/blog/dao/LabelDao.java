@@ -12,4 +12,5 @@ import java.util.List;
 public interface LabelDao {
     public void addLabel(Label label);
     public List<Label> getAllLabels();
+    public int findIdByName(String name);
 }

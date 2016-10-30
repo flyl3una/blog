@@ -10,4 +10,5 @@ import java.util.List;
 public interface CatalogueService {
     public void addCatalogue(Catalogue catalogue);
     public List<Catalogue> getAllCatalogue();
+    public int findIdByName(String name);
 }

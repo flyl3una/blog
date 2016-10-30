@@ -25,4 +25,9 @@ public class CatalogueServiceImpl implements CatalogueService {
     public List<Catalogue> getAllCatalogue() {
         return catalogueDao.getAllCatalogue();
     }
+
+    @Override
+    public int findIdByName(String name) {
+        return catalogueDao.findIdByName(name);
+    }
 }

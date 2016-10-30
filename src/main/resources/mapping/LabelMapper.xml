@@ -13,4 +13,8 @@
     <insert id="addLabel" parameterType="com.blog.pojo.Label">
         insert INTO label(name) VALUES (#{name})
     </insert>
+
+    <select id="findIdByName" parameterType="String" resultType="int">
+        SELECT id from catalogue WHERE name=(#{name})
+    </select>
 </mapper>

@@ -53,6 +53,7 @@ public class BlogController {
 
     @RequestMapping(value = "/catalogue", method = RequestMethod.GET)
     public String getArticlesByCatalogue(@RequestParam("name")String name, Model model){
+
         return "/blog/index";
     }
 

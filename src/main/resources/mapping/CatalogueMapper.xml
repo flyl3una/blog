@@ -14,4 +14,8 @@
     <insert id="addCatalogue" parameterType="com.blog.pojo.Catalogue">
         INSERT INTO catalogue(name) values(#{name})
     </insert>
+
+    <select id="findIdByName" parameterType="String" resultType="int">
+        SELECT id from catalogue WHERE name=(#{name})
+    </select>
 </mapper>
