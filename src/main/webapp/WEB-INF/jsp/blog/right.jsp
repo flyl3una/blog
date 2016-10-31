@@ -13,7 +13,7 @@
         <ul>
             <c:forEach items="${catalogues}" var="catalogue">
                 <li>
-                    <a href="/catalogue/${catalogue.name}" class="catalogue" target="_blank" style="text-decoration: none;">${catalogue.name}</a>
+                    <a href="/catalogue?name=${catalogue.name}" class="catalogue" target="_blank" style="text-decoration: none;">${catalogue.name}</a>
                 </li>
             </c:forEach>
         </ul>
@@ -32,6 +32,6 @@
     function tolabel(name){
         console.log(name);
 //        windows.location.href = "/label/"+name;
-        window.open("/label/"+name);
+        window.open("/label?name="+name);
     }
 </script>

@@ -15,6 +15,6 @@
     </insert>
 
     <select id="findIdByName" parameterType="String" resultType="int">
-        SELECT id from catalogue WHERE name=(#{name})
+        SELECT id from label WHERE name=(#{name})
     </select>
 </mapper>

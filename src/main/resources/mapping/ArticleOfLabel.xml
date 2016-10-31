@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blog.dao.ArticleOfLabel">
+<mapper namespace="com.blog.dao.ArticleOfLabelDao">
     
     <resultMap id="Article" type="com.blog.pojo.Article">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>
-    <select id="findArticleByLabelName" parameterType="String" resultType="com.blog.pojo.Article">
-        select * from article where id=(select article_id from article_of_label where label_id=(select id from label where name='abc'))
+    <!--<select id="findArticleByLabelName" parameterType="String" resultType="com.blog.pojo.Article">-->
+        <!--select * from article where id=(select article_id from article_of_label where label_id=(select id from label where name='abc'))-->
+    <!--</select>-->
+    <select id="findArticleIdByLabelId" parameterType="int" resultType="Integer">
+        SELECT article_id FROM article_of_label WHERE label_id=#{id}
     </select>
 </mapper>

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface CatalogueDao {
 
-    public void addCatalogue(Catalogue catalogue);
-    public List<Catalogue> getAllCatalogue();
-    public int findIdByName(String name);
+    void addCatalogue(Catalogue catalogue);
+    List<Catalogue> getAllCatalogue();
+    int findIdByName(String name);
 }

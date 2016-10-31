@@ -9,5 +9,5 @@ import com.blog.pojo.Admin;
 
 public interface AdminService {
 
-    public Admin findAdminByUsername(String username);
+    Admin findAdminByUsername(String username);
 }

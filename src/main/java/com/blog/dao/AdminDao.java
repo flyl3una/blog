@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AdminDao {
-    public Admin findAdminByUsername(String username);
+    Admin findAdminByUsername(String username);
 
 }

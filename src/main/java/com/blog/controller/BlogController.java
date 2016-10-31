@@ -3,9 +3,7 @@ package com.blog.controller;
 import com.blog.pojo.Article;
 import com.blog.pojo.Catalogue;
 import com.blog.pojo.Label;
-import com.blog.service.ArticleService;
-import com.blog.service.CatalogueService;
-import com.blog.service.LabelService;
+import com.blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +27,11 @@ public class BlogController {
     private CatalogueService catalogueService;
     @Autowired
     private LabelService labelService;
+    @Autowired
+    private ArticleOfCatalogueService articleOfCatalogueService;
+    @Autowired
+    private ArticleOfLabelService articleOfLabelService;
+
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String blogIndex(Model model){
@@ -53,12 +57,45 @@ public class BlogController {
 
     @RequestMapping(value = "/catalogue", method = RequestMethod.GET)
     public String getArticlesByCatalogue(@RequestParam("name")String name, Model model){
-
+        try{
+            int catalogueId = catalogueService.findIdByName(name);
+            Integer[] articlesId = articleOfCatalogueService.findArticleIdByCatalogueId(catalogueId);
+            List<Article> articles = new ArrayList<Article>();
+            for(int id:articlesId){
+                Article article = articleService.findArticleById(id);
+                articles.add(article);
+            }
+            List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+            List<Label> labels = labelService.getAllLabels();
+            model.addAttribute("articles", articles);
+            model.addAttribute("catalogues", catalogues);
+            model.addAttribute("labels", labels);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "error/404";
+        }
         return "/blog/index";
     }
 
     @RequestMapping(value = "/label", method = RequestMethod.GET)
     public String getArticlesByLabel(@RequestParam("name")String name, Model model){
+        try{
+            int labelId = labelService.findIdByName(name);
+            Integer[] articlesId = articleOfLabelService.findArticleIdByLabelId(labelId);
+            List<Article> articles = new ArrayList<Article>();
+            for(int id:articlesId){
+                Article article = articleService.findArticleById(id);
+                articles.add(article);
+            }
+            List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+            List<Label> labels = labelService.getAllLabels();
+            model.addAttribute("articles", articles);
+            model.addAttribute("catalogues", catalogues);
+            model.addAttribute("labels", labels);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "error/404";
+        }
         return "/blog/index";
     }
 }

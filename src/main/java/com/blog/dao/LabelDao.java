@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Repository
 public interface LabelDao {
-    public void addLabel(Label label);
-    public List<Label> getAllLabels();
-    public int findIdByName(String name);
+    void addLabel(Label label);
+    List<Label> getAllLabels();
+    int findIdByName(String name);
 }
