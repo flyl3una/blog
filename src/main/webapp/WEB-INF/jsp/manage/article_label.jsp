@@ -16,19 +16,30 @@
     <%@include file="left.jsp"%>
 </div>
 <div class="manage-right">
-
-    <div class="content">内容</div>
-    标签
+    <div style="display: inline; float: left;width: 50%">
+        <div class="content-title">标签</div>
     <form action="/manage/add-label" method="post">
-        名称<input type="text" name="name">
-        <input type="submit" value="提交">
+        <div>名称</div>
+        <input type="text" name="name" class="input-text">
+        <input type="submit" value="提交" class="input-submit">
     </form>
-    <table border="1px solid ">
-        <tr><th>label</th></tr>
-        <c:forEach var="label" items="${labels}" varStatus="status">
-            <tr><td>${label.name}</td></tr>
-        </c:forEach>
-    </table>
+    </div>
+    <div class="form-option">
+        <form method="post">
+            <table border="1px solid ">
+                <tr>
+                    <th>名称</th>
+                    <th>总数</th>
+                </tr>
+                <c:forEach var="label" items="${labels}" varStatus="status">
+                    <tr>
+                        <td>${label.name}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+            <input type="submit" value="删除" class="input-submit">
+        </form>
+    </div>
 </div>
 </body>
 </html>

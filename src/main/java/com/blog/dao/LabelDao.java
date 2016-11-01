@@ -13,4 +13,6 @@ public interface LabelDao {
     void addLabel(Label label);
     List<Label> getAllLabels();
     int findIdByName(String name);
+
+    String findNameById(int labelId);
 }

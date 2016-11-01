@@ -1,6 +1,7 @@
 package com.blog.pojo;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Created by fly_l on 2016/10/20.
@@ -11,7 +12,7 @@ public class Article {
     private String title;
     private String content;
     private String simple;
-    private Time createTime;
+    private Timestamp createTime;
 
     public String getSimple() {
         return simple;
@@ -45,11 +46,11 @@ public class Article {
         this.title = title;
     }
 
-    public Time getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Time createrTime) {
+    public void setCreateTime(Timestamp createrTime) {
         this.createTime = createrTime;
     }
 }

@@ -16,8 +16,8 @@ public class ArticleOfCatalogueServiceImpl implements ArticleOfCatalogueService 
     private ArticleOfCatalogueDao articleOfCatalogueDao;
 
     @Override
-    public Integer[] findArticleIdByCatalogueId(int id) {
-        return articleOfCatalogueDao.findArticleIdByCatalogueId(id);
+    public Integer[] findArticleIdByCatalogueId(int catalogueId) {
+        return articleOfCatalogueDao.findArticleIdByCatalogueId(catalogueId);
     }
 
 }

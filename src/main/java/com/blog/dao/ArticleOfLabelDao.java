@@ -10,6 +10,7 @@ import java.util.List;
  */
 @Repository
 public interface ArticleOfLabelDao {
-    Integer[] findArticleIdByLabelId(int id);
+    Integer[] findArticleIdByLabelId(int labelId);
 
+    Integer[] findLabelsIdByArticleId(int articleId);
 }

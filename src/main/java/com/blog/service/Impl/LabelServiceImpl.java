@@ -31,4 +31,8 @@ public class LabelServiceImpl implements LabelService {
     public int findIdByName(String name) {
         return labelDao.findIdByName(name);
     }
+
+    public String findNameById(int labelId) {
+        return labelDao.findNameById(labelId);
+    }
 }

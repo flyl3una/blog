@@ -15,7 +15,12 @@ public class ArticleOfLabelServiceImpl implements ArticleOfLabelService {
     private ArticleOfLabelDao articleOfLabelDao;
 
     @Override
-    public Integer[] findArticleIdByLabelId(int id) {
-        return articleOfLabelDao.findArticleIdByLabelId(id);
+    public Integer[] findArticleIdByLabelId(int labelId) {
+        return articleOfLabelDao.findArticleIdByLabelId(labelId);
+    }
+
+    @Override
+    public Integer[] findLabelsIdByArticleId(int articleId) {
+        return articleOfLabelDao.findLabelsIdByArticleId(articleId);
     }
 }

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.dao.LabelDao">
-    <resultMap id="Label" type="com.blog.pojo.Label">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-    </resultMap>
 
-    <select id="getAllLabels" resultMap="Label">
+    <select id="getAllLabels" resultType="com.blog.pojo.Label">
         select * from label;
     </select>
 
@@ -16,5 +12,9 @@
 
     <select id="findIdByName" parameterType="String" resultType="int">
         SELECT id from label WHERE name=(#{name})
+    </select>
+
+    <select id="findNameById" parameterType="int" resultType="String">
+        SELECT name FROM label WHERE id=#{labelId}
     </select>
 </mapper>

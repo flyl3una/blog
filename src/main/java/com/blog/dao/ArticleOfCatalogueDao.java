@@ -10,5 +10,5 @@ import java.util.List;
  */
 @Repository
 public interface ArticleOfCatalogueDao {
-    Integer[] findArticleIdByCatalogueId(int id);
+    Integer[] findArticleIdByCatalogueId(int catalogueId);
 }

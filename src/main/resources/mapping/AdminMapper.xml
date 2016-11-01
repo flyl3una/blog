@@ -6,5 +6,4 @@
         SELECT username, password, email FROM admin WHERE username=#{username}
     </select>
 
-
 </mapper>
