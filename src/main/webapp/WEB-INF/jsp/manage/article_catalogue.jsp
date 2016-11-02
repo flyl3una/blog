@@ -26,20 +26,28 @@
     </div>
     <div class="form-option">
         <form>
-            <table border="1px" class="table-option">
-                <tr style="color: #00a0d2">
-                    <td>名称</td>
-                    <td>总数</td>
-                    <td>操作</td>
-                </tr>
-                <c:forEach var="catalogue" items="${catalogues}" varStatus="status">
+            <table class="table-option">
+                <thead>
                     <tr>
+                        <td><input type="checkbox" id="delete-all" class="checkbox-delete" onclick="selete_all()"></td>
+                        <td>名称</td>
+                        <td>总数</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <c:forEach var="catalogue" items="${catalogues}" varStatus="status">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox-delete" id="delete-${catalogue.id}"></td>
                         <td>${catalogue.name}</td>
                         <td>0</td>
-                        <td><a>更改</a><a>删除</a>
+                        <td>
+                            <button>更改</button><button>删除</button>
                         </td>
                     </tr>
+                </tbody>
                 </c:forEach>
+
             </table>
             <input type="submit" value="删除" class="input-submit">
         </form>
@@ -47,3 +55,24 @@
 </div>
 </body>
 </html>
+
+
+<script>
+    function selete_all(){
+        if(document.getElementById("delete-all").checked==true)
+            check();
+        else
+            uncheck();
+    }
+    function check()
+    {
+        for(checkbox1 in document.getElementsByClassName("checkbox-delete")){
+            console.log(checkbox1.checked);
+            checkbox1.checked=true;
+        }
+    }
+    function uncheck()
+    {
+        document.getElementsByClassName("checkbox-delete").checked=false
+    }
+</script>
