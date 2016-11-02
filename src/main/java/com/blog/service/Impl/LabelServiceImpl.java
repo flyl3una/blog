@@ -35,4 +35,19 @@ public class LabelServiceImpl implements LabelService {
     public String findNameById(int labelId) {
         return labelDao.findNameById(labelId);
     }
+
+    @Override
+    public Label findLabelById(int id) {
+        return labelDao.findLabelById(id);
+    }
+
+    @Override
+    public void deleteLabelById(int id) {
+        labelDao.deleteLabelById(id);
+    }
+
+    @Override
+    public void updateLabel(Label label) {
+        labelDao.updateLabel(label);
+    }
 }

@@ -2,6 +2,7 @@ package com.blog.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.blog.pojo.Article;
 import com.blog.pojo.Catalogue;
 import com.blog.pojo.Label;
@@ -14,9 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -97,15 +101,88 @@ public class ManageController {
         return "/manage/article_label";
     }
 
-    @RequestMapping(value = "add-label", method = RequestMethod.POST)
+    @RequestMapping(value = "add_label", method = RequestMethod.POST)
     public String submitLabel(Label label){
         labelService.addLabel(label);
         return "redirect:/manage/article_label";
     }
 
-    @RequestMapping(value = "add-catalogue", method = RequestMethod.POST)
+    @RequestMapping(value = "add_catalogue", method = RequestMethod.POST)
     public String submitCatalogue(Catalogue catalogue){
         catalogueService.addCatalogue(catalogue);
         return "redirect:/manage/article_catalogue";
     }
+
+    @RequestMapping(value = "delete_catalogues", method = RequestMethod.POST)
+    public String deleteCatalogues(HttpServletRequest request) {
+        Enumeration names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String paramName = (String) names.nextElement();
+            int id = Integer.parseInt(paramName);
+            catalogueService.deleteCatalogueById(id);
+        }
+        return "redirect:article_catalogue";
+    }
+
+    @RequestMapping(value = "delete_labels", method = RequestMethod.POST)
+    public String deleteLabels(HttpServletRequest request) {
+        Enumeration names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String paramName = (String) names.nextElement();
+            int id = Integer.parseInt(paramName);
+            labelService.deleteLabelById(id);
+        }
+        return "redirect:article_label";
+    }
+
+    @RequestMapping(value = "delete_catalogue", method = RequestMethod.GET)
+    public String deleteCatalogue(@RequestParam("id") int id) {
+        catalogueService.deleteCatalogueById(id);
+        return "redirect:article_catalogue";
+    }
+
+    @RequestMapping(value = "delete_label", method = RequestMethod.GET)
+    public String deleteLabel(@RequestParam("id") int id) {
+        labelService.deleteLabelById(id);
+        return "redirect:article_label";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "update_catalogue", method = RequestMethod.GET)
+    public String updateCatalogue(@RequestParam("id") int id, @RequestParam("name") String name) {
+        Catalogue catalogue = catalogueService.findCatalogueById(id);
+        catalogue.setName(name);
+        try {
+            catalogueService.updateCatalogue(catalogue);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("status", "success");
+            return jsonObject.toString();
+        } catch (Exception e) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("status", "error");
+            String old_name = catalogueService.findNameById(catalogue.getId());
+            jsonObject.put("old_name", old_name);
+            return jsonObject.toString();
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "update_label", method = RequestMethod.GET)
+    public String updateLabel(@RequestParam("id") int id, @RequestParam("name") String name) {
+        Label label = labelService.findLabelById(id);
+        label.setName(name);
+        try {
+            labelService.updateLabel(label);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("status", "success");
+            return jsonObject.toString();
+        } catch (Exception e) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("status", "error");
+            String old_name = labelService.findNameById(label.getId());
+            jsonObject.put("old_name", old_name);
+            return jsonObject.toString();
+        }
+    }
+
 }

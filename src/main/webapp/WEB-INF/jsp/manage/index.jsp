@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>后台管理</title>
-<%--<%@ include file="/WEB-INF/jsp/base/src.jsp"%>--%>
 
 </head>
 <body>
@@ -17,7 +16,7 @@
     <%@include file="left.jsp"%>
 </div>
 <div class="manage-right">
-    <div class="content">内容</div>
+    <div class="content-index"><br><br>欢迎来到管理页面<br><br>请文明操作，谨慎开车！！！</div>
 </div>
 </body>
 </html>

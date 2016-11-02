@@ -30,4 +30,24 @@ public class CatalogueServiceImpl implements CatalogueService {
     public int findIdByName(String name) {
         return catalogueDao.findIdByName(name);
     }
+
+    @Override
+    public String findNameById(int id) {
+        return catalogueDao.findNameById(id);
+    }
+
+    @Override
+    public void deleteCatalogueById(int id) {
+        catalogueDao.deleteCatalogueById(id);
+    }
+
+    @Override
+    public Catalogue findCatalogueById(int id) {
+        return catalogueDao.findCatalogueById(id);
+    }
+
+    @Override
+    public void updateCatalogue(Catalogue catalogue) {
+        catalogueDao.updateCatalogue(catalogue);
+    }
 }

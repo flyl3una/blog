@@ -13,6 +13,11 @@ public interface LabelService {
     void addLabel(Label label);
     List<Label> getAllLabels();
     int findIdByName(String name);
-
     String findNameById(int labelId);
+
+    Label findLabelById(int id);
+
+    void deleteLabelById(int id);
+
+    void updateLabel(Label label);
 }

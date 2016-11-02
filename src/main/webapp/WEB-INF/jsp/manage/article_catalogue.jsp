@@ -16,20 +16,22 @@
     <%@include file="left.jsp"%>
 </div>
 <div class="manage-right">
+    <div class="content-title">分类目录</div>
     <div style="display: inline; float: left;width: 50%">
-        <div class="content-title">分类目录</div>
-        <form action="/manage/add-catalogue" method="post">
-            <div>添加目录</div>
+        <form action="/manage/add_catalogue" method="post">
+            <div style="margin: 0 0 0 5%">添加目录</div>
             <input type="text" name="name" class="input-text">
             <input type="submit" value="添加" class="input-submit">
         </form>
     </div>
     <div class="form-option">
-        <form>
+        <form method="post" action="/manage/delete_catalogues">
+            目录管理
             <table class="table-option">
                 <thead>
                     <tr>
-                        <td><input type="checkbox" id="delete-all" class="checkbox-delete" onclick="selete_all()"></td>
+                        <td style="width:55px"><input type="checkbox" id="delete-all" class="checkbox-delete"
+                                                      onclick="selete_all()"></td>
                         <td>名称</td>
                         <td>总数</td>
                         <td>操作</td>
@@ -38,16 +40,20 @@
                 <c:forEach var="catalogue" items="${catalogues}" varStatus="status">
                 <tbody>
                     <tr>
-                        <td><input type="checkbox" class="checkbox-delete" id="delete-${catalogue.id}"></td>
-                        <td>${catalogue.name}</td>
+                        <td><input type="checkbox" name="${catalogue.id}" class="checkbox-delete"
+                                   id="delete-${catalogue.id}"></td>
+                        <td>
+                            <div contenteditable="true" id="${catalogue.id}-name">${catalogue.name}</div>
+                                <%--<input type="text" value="${catalogue.name}" readonly=true onclick="write_text(this)">--%>
+                        </td>
                         <td>0</td>
                         <td>
-                            <button>更改</button><button>删除</button>
+                            <a onclick="update_name(${catalogue.id})">更改</a>
+                            <a href="/manage/delete_catalogue?id=${catalogue.id}">删除</a>
                         </td>
                     </tr>
                 </tbody>
                 </c:forEach>
-
             </table>
             <input type="submit" value="删除" class="input-submit">
         </form>
@@ -58,6 +64,31 @@
 
 
 <script>
+
+    function write_text() {
+        this.readonly = false
+    }
+
+    function update_name(id) {
+        console.log(id);
+        id_name = "#" + id + "-name";
+        name = $(id_name).text();
+        console.log(name);
+        $.ajax({
+            type: "GET",
+            url: "/manage/update_catalogue?id=" + id + '&name=' + name,
+            success: function (data) {
+                if (data.status = "success") {
+                    console.log("修改成功");
+                } else {
+                    name = data.old_name;
+                    $(id_name).text(name);
+                    alert("修改失败");
+                }
+            }
+        })
+    }
+
     function selete_all(){
         if(document.getElementById("delete-all").checked==true)
             check();
@@ -66,13 +97,16 @@
     }
     function check()
     {
-        for(checkbox1 in document.getElementsByClassName("checkbox-delete")){
-            console.log(checkbox1.checked);
-            checkbox1.checked=true;
+        var checkbox_delete = document.getElementsByClassName("checkbox-delete");
+        for (var i = 0; i < checkbox_delete.length; i++) {
+            checkbox_delete[i].checked = true;
         }
     }
     function uncheck()
     {
-        document.getElementsByClassName("checkbox-delete").checked=false
+        var checkbox_delete = document.getElementsByClassName("checkbox-delete");
+        for (var i = 0; i < checkbox_delete.length; i++) {
+            checkbox_delete[i].checked = false;
+        }
     }
 </script>

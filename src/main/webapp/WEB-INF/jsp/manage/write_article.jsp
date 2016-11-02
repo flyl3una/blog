@@ -21,15 +21,15 @@
 <div class="manage-right">
     <div class="content-title">写文章</div>
     <form action="/manage/write_article" method="post">
-        <div>文章标题</div>
+        <div style="margin:-10px 0 0 5%">文章标题</div>
         <input type="text" name="title" class="input-text">
-        <div>文章内容</div>
+        <div style="margin-left: 5%">文章内容</div>
         <div class="editormd" id="test-editormd">
             <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"></textarea>
             <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
             <textarea class="editormd-html-textarea" name="content"></textarea>
         </div>
-        <input type="submit" value="发布" class="input-submit">
+        <input type="submit" value="发布" class="input-submit" style="margin-left: 5%">
     </form>
 </div>
 

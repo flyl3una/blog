@@ -14,4 +14,12 @@ public interface CatalogueDao {
     void addCatalogue(Catalogue catalogue);
     List<Catalogue> getAllCatalogue();
     int findIdByName(String name);
+
+    String findNameById(int id);
+
+    Catalogue findCatalogueById(int id);
+
+    void deleteCatalogueById(int id);
+
+    void updateCatalogue(Catalogue catalogue);
 }

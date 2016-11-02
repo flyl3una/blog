@@ -17,4 +17,16 @@
     <select id="findNameById" parameterType="int" resultType="String">
         SELECT name FROM label WHERE id=#{labelId}
     </select>
+
+    <select id="findLabelById" parameterType="int" resultType="com.blog.pojo.Label">
+        SELECT * FROM label WHERE id=#{id}
+    </select>
+
+    <delete id="deleteLabelById" parameterType="int">
+        DELETE FROM label WHERE id=#{id}
+    </delete>
+
+    <update id="updateLabelById" parameterType="int">
+      UPDATE label SET name=#{name} WHERE id=#{id}
+    </update>
 </mapper>

@@ -13,4 +13,20 @@
     <select id="findIdByName" parameterType="String" resultType="int">
         SELECT id from catalogue WHERE name=(#{name})
     </select>
+
+    <select id="findNameById" parameterType="int" resultType="String">
+        SELECT name FROM catalogue WHERE id=#{id}
+    </select>
+
+    <delete id="deleteCatalogueById" parameterType="int">
+        DELETE FROM catalogue WHERE id=#{id}
+    </delete>
+
+    <select id="findCatalogueById" parameterType="int" resultType="com.blog.pojo.Catalogue">
+        SELECT * FROM catalogue WHERE id=#{id}
+    </select>
+
+    <update id="updateCatalogue" parameterType="com.blog.pojo.Catalogue">
+        UPDATE catalogue SET name=#{name} WHERE id=#{id}
+    </update>
 </mapper>
