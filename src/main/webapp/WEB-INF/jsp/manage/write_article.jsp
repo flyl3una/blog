@@ -22,12 +22,30 @@
     <div class="content-title">写文章</div>
     <form action="/manage/write_article" method="post">
         <div style="margin:-10px 0 0 5%">文章标题</div>
-        <input type="text" name="title" class="input-text">
-        <div style="margin-left: 5%">文章内容</div>
-        <div class="editormd" id="test-editormd">
-            <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"></textarea>
-            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-            <textarea class="editormd-html-textarea" name="content"></textarea>
+        <div style="float: left; width:35%;margin-left: 5%;">
+            <input type="text" name="title" class="input-text">
+        </div>
+        <div style="float: left;">目录：</div>
+        <div style="float: left;">
+            <select name="catalogueId" class="select-catalogue">
+                <c:forEach var="catalogue" items="${catalogues}" varStatus="status">
+                <option value="${catalogue.id}">${catalogue.name}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div style="float: left; margin-left: 3%;">
+            <c:forEach var="label" items="${labels}">
+                <input type="checkbox" class="select-labels" name="labelsId" id="delete-${label.id}" value="${label.id}">${label.name}
+            </c:forEach>
+            <input type="hidden" name="labelsId">
+        </div>
+        <div style="margin-top:5%;">
+            <div class="editormd" id="test-editormd">
+                <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" onmouseout="write_simple()"></textarea>
+                <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                <textarea class="editormd-html-textarea" name="content" id="content"></textarea>
+                <textarea class="hidden" name="simple" id="simple"></textarea>
+            </div>
         </div>
         <input type="submit" value="发布" class="input-submit" style="margin-left: 5%">
     </form>
@@ -52,5 +70,9 @@
             saveHTMLToTextarea : true
         });
     });
+
+    function write_simple(){
+        $("#simple").value = $("#content").text();
+    }
 </script>
 

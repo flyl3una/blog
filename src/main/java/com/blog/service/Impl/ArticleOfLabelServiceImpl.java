@@ -1,6 +1,7 @@
 package com.blog.service.Impl;
 
 import com.blog.dao.ArticleOfLabelDao;
+import com.blog.pojo.ArtOfLabel;
 import com.blog.service.ArticleOfLabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,17 @@ public class ArticleOfLabelServiceImpl implements ArticleOfLabelService {
     private ArticleOfLabelDao articleOfLabelDao;
 
     @Override
-    public Integer[] findArticleIdByLabelId(int labelId) {
-        return articleOfLabelDao.findArticleIdByLabelId(labelId);
+    public Integer[] findArticlesIdByLabelId(int labelId) {
+        return articleOfLabelDao.findArticlesIdByLabelId(labelId);
     }
 
     @Override
     public Integer[] findLabelsIdByArticleId(int articleId) {
         return articleOfLabelDao.findLabelsIdByArticleId(articleId);
+    }
+
+    @Override
+    public void addArticleOfLabel(ArtOfLabel artOfLabel) {
+        articleOfLabelDao.addArticleOfLabel(artOfLabel);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface CatalogueService {
     void addCatalogue(Catalogue catalogue);
-    List<Catalogue> getAllCatalogue();
+    List<Catalogue> getAllCatalogues();
     int findIdByName(String name);
 
     String findNameById(int id);

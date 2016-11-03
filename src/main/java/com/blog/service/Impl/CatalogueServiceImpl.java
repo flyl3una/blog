@@ -22,8 +22,8 @@ public class CatalogueServiceImpl implements CatalogueService {
     }
 
     @Override
-    public List<Catalogue> getAllCatalogue() {
-        return catalogueDao.getAllCatalogue();
+    public List<Catalogue> getAllCatalogues() {
+        return catalogueDao.getAllCatalogues();
     }
 
     @Override

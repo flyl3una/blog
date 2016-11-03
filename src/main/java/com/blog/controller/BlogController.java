@@ -38,7 +38,7 @@ public class BlogController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String blogIndex(Model model){
         List<Article> articles = articleService.getAllArticle();
-        List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+        List<Catalogue> catalogues = catalogueService.getAllCatalogues();
         List<Label> labels = labelService.getAllLabels();
         model.addAttribute("articles", articles);
         model.addAttribute("catalogues", catalogues);
@@ -66,7 +66,7 @@ public class BlogController {
     public String article(@RequestParam(value = "id")int id, Model model){
         Article article = articleService.findArticleById(id);
         model.addAttribute("article", article);
-        List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+        List<Catalogue> catalogues = catalogueService.getAllCatalogues();
         List<Label> labels = labelService.getAllLabels();
         model.addAttribute("catalogues", catalogues);
         model.addAttribute("labels", labels);
@@ -77,13 +77,13 @@ public class BlogController {
     public String getArticlesByCatalogue(@RequestParam("name")String name, Model model){
         try{
             int catalogueId = catalogueService.findIdByName(name);
-            Integer[] articlesId = articleOfCatalogueService.findArticleIdByCatalogueId(catalogueId);
+            Integer[] articlesId = articleOfCatalogueService.findArticlesIdByCatalogueId(catalogueId);
             List<Article> articles = new ArrayList<Article>();
             for(int id:articlesId){
                 Article article = articleService.findArticleById(id);
                 articles.add(article);
             }
-            List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+            List<Catalogue> catalogues = catalogueService.getAllCatalogues();
             List<Label> labels = labelService.getAllLabels();
             model.addAttribute("articles", articles);
             model.addAttribute("catalogues", catalogues);
@@ -99,13 +99,13 @@ public class BlogController {
     public String getArticlesByLabel(@RequestParam("name")String name, Model model){
         try{
             int labelId = labelService.findIdByName(name);
-            Integer[] articlesId = articleOfLabelService.findArticleIdByLabelId(labelId);
+            Integer[] articlesId = articleOfLabelService.findArticlesIdByLabelId(labelId);
             List<Article> articles = new ArrayList<Article>();
             for(int id:articlesId){
                 Article article = articleService.findArticleById(id);
                 articles.add(article);
             }
-            List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+            List<Catalogue> catalogues = catalogueService.getAllCatalogues();
             List<Label> labels = labelService.getAllLabels();
             model.addAttribute("articles", articles);
             model.addAttribute("catalogues", catalogues);

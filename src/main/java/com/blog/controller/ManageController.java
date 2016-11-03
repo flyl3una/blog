@@ -3,13 +3,8 @@ package com.blog.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.blog.pojo.Article;
-import com.blog.pojo.Catalogue;
-import com.blog.pojo.Label;
-import com.blog.service.AdminService;
-import com.blog.service.ArticleService;
-import com.blog.service.CatalogueService;
-import com.blog.service.LabelService;
+import com.blog.pojo.*;
+import com.blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +35,11 @@ public class ManageController {
     private LabelService labelService;
     @Autowired
     private CatalogueService catalogueService;
+    @Autowired
+    private ArticleOfCatalogueService articleOfCatalogueService;
+    @Autowired
+    private ArticleOfLabelService articleOfLabelService;
+
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(HttpSession session) {
@@ -54,32 +53,72 @@ public class ManageController {
 
     @ResponseBody
     @RequestMapping(value = "show-article-list", method = RequestMethod.GET)
-    public String showArticleList(){
+    public String showArticleList(@RequestParam(value = "page", required = true)int page){
         return "aaa";
     }
 
     @RequestMapping(value = "article_list", method = RequestMethod.GET)
-    public String articleList(Model model){
+    public String articleList(Model model, @RequestParam(value = "page", required = true)int page){
         List<Article> articles = articleService.getAllArticle();
-//        model.addAttribute("articles", JSON.toJSONString(articles));
+        Map<Integer, String>catalogues = new HashMap<Integer, String>();
+        Map<Integer, List<String>>labels = new HashMap<Integer, List<String>>();
+
+        for(int i = (page-1)*10; i < (articles.size()<page*10?articles.size():page*10); i++){
+            Article article = articles.get(i);
+            int catalogueId = articleOfCatalogueService.findCatalogueIdByArticleId(article.getId());
+            Catalogue catalogue = catalogueService.findCatalogueById(catalogueId);
+            catalogues.put(article.getId(), catalogue.getName());
+            Integer[] labelsId= articleOfLabelService.findLabelsIdByArticleId(article.getId());
+            List<String> labelsName = new ArrayList<String>();
+            for(int labelId : labelsId){
+                Label label = labelService.findLabelById(labelId);
+                labelsName.add(label.getName());
+            }
+            labels.put(article.getId(), labelsName);
+        }
         model.addAttribute("articles", articles);
+        model.addAttribute("catalogues", catalogues);
+        model.addAttribute("labels", labels);
+
         return "/manage/article_list";
     }
 
     @RequestMapping(value = "write_article", method = RequestMethod.GET)
-    public String writeArticle(){
+    public String writeArticle(Model model){
+        List<Label> labels = labelService.getAllLabels();
+        List<Catalogue> catalogues = catalogueService.getAllCatalogues();
+        model.addAttribute("catalogues", catalogues);
+        model.addAttribute("labels", labels);
         return "/manage/write_article";
     }
 
     @RequestMapping(value = "write_article", method = RequestMethod.POST)
-    public String writeArticle(Article article, Model model){
+    public String writeArticle(Article article,
+                               @RequestParam("catalogueId")int catalogueId,
+                               @RequestParam("labelsId")String labelsId,
+                               Model model){
         try{
-            Pattern p = Pattern.compile("(<.*>)+");
-            Matcher m = p.matcher(article.getContent());
-            String simple = m.replaceAll("").trim();
-//            System.out.println(simple);
-            article.setSimple(simple);
+//            article.setSimple(article.getSimple().replaceAll("(\r\n|\r|\n|\n\r|\t)", "").trim());
+            String[] labelId = labelsId.split(",");
+            String regEx="<[^>]+>";
+            Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
+            Matcher   m   =   p.matcher(article.getSimple());
+            String simple=m.replaceAll("").trim();
+            int len = (simple.length()>20?20:simple.length());
+            article.setSimple(simple.substring(0, len));
+
+            ArtOfCatalogue artOfCatalogue = new ArtOfCatalogue();
+            artOfCatalogue.setArticle_id(article.getId());
+            artOfCatalogue.setCatalogue_id(catalogueId);
+            articleOfCatalogueService.addArticleOfCatalogue(artOfCatalogue);
             articleService.addArticle(article);
+            for(String idStr:labelId){
+                int id = Integer.parseInt(idStr);
+                ArtOfLabel artOfLabel = new ArtOfLabel();
+                artOfLabel.setArticle_id(article.getId());
+                artOfLabel.setLabel_id(id);
+                articleOfLabelService.addArticleOfLabel(artOfLabel);
+            }
             return "redirect:/manage/article_list";
         }catch (Exception e){
             model.addAttribute("error", "文章发布失败");
@@ -89,7 +128,7 @@ public class ManageController {
 
     @RequestMapping(value = "article_catalogue", method = RequestMethod.GET)
     public String articleCatalogue(Model model){
-        List<Catalogue> catalogues = catalogueService.getAllCatalogue();
+        List<Catalogue> catalogues = catalogueService.getAllCatalogues();
         model.addAttribute("catalogues", catalogues);
         return "/manage/article_catalogue";
     }

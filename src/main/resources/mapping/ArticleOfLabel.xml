@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.dao.ArticleOfLabelDao">
 
-    <select id="findArticleIdByLabelId" parameterType="int" resultType="Integer">
+    <select id="findArticlesIdByLabelId" parameterType="int" resultType="Integer">
         SELECT article_id FROM article_of_label WHERE label_id=#{labelId}
     </select>
     <select id="findLabelsIdByArticleId" parameterType="int" resultType="Integer">
         SELECT label_id FROM article_of_label WHERE article_id=#{articleId}
     </select>
+
+    <insert id="addArticleOfLabel" parameterType="com.blog.pojo.ArtOfLabel">
+        INSERT INTO article_of_label(article_id, label_id) VALUES(#{article_id}, #{label_id})
+    </insert>
 </mapper>

@@ -1,6 +1,7 @@
 package com.blog.service.Impl;
 
 import com.blog.dao.ArticleOfCatalogueDao;
+import com.blog.pojo.ArtOfCatalogue;
 import com.blog.service.ArticleOfCatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,17 @@ public class ArticleOfCatalogueServiceImpl implements ArticleOfCatalogueService 
     private ArticleOfCatalogueDao articleOfCatalogueDao;
 
     @Override
-    public Integer[] findArticleIdByCatalogueId(int catalogueId) {
-        return articleOfCatalogueDao.findArticleIdByCatalogueId(catalogueId);
+    public Integer[] findArticlesIdByCatalogueId(int catalogueId) {
+        return articleOfCatalogueDao.findArticlesIdByCatalogueId(catalogueId);
     }
 
+    @Override
+    public Integer findCatalogueIdByArticleId(int articleId) {
+        return articleOfCatalogueDao.findCatalogueIdByArticleId(articleId);
+    }
+
+    @Override
+    public void addArticleOfCatalogue(ArtOfCatalogue artOfCatalogue) {
+        articleOfCatalogueDao.addArticleOfCatalogue(artOfCatalogue);
+    }
 }

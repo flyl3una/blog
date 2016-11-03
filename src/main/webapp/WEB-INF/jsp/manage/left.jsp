@@ -12,7 +12,7 @@
         <a href="../manage/index" class="a-list-text">网站信息</a>
     </div>
     <div id="show-article-list" class="list-item">
-        <a href="../manage/article_list" class="a-list-text">文章列表</a>
+        <a href="../manage/article_list?page=1" class="a-list-text">文章列表</a>
     </div>
     <div id="write-article" class="list-item">
         <a href="../manage/write_article" class="a-list-text">写文章</a>

@@ -1,5 +1,6 @@
 package com.blog.dao;
 
+import com.blog.pojo.ArtOfCatalogue;
 import com.blog.pojo.Article;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,7 @@ import java.util.List;
  */
 @Repository
 public interface ArticleOfCatalogueDao {
-    Integer[] findArticleIdByCatalogueId(int catalogueId);
+    Integer[] findArticlesIdByCatalogueId(int catalogueId);
+    Integer findCatalogueIdByArticleId(int articleId);
+    void addArticleOfCatalogue(ArtOfCatalogue artOfCatalogue);
 }
