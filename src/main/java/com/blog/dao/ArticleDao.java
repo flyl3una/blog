@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ArticleDao {
 
-    void addArticle(Article article);
+    int addArticle(Article article);
     List<Article> getAllArticle();
     void updateArticle(Article article);
     void deleteArticle(Article article);

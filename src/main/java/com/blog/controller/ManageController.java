@@ -51,14 +51,8 @@ public class ManageController {
         return "/manage/index";
     }
 
-    @ResponseBody
-    @RequestMapping(value = "show-article-list", method = RequestMethod.GET)
-    public String showArticleList(@RequestParam(value = "page", required = true)int page){
-        return "aaa";
-    }
-
     @RequestMapping(value = "article_list", method = RequestMethod.GET)
-    public String articleList(Model model, @RequestParam(value = "page", required = true)int page){
+    public String articleList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
         List<Article> articles = articleService.getAllArticle();
         Map<Integer, String>catalogues = new HashMap<Integer, String>();
         Map<Integer, List<String>>labels = new HashMap<Integer, List<String>>();
@@ -100,18 +94,18 @@ public class ManageController {
         try{
 //            article.setSimple(article.getSimple().replaceAll("(\r\n|\r|\n|\n\r|\t)", "").trim());
             String[] labelId = labelsId.split(",");
-            String regEx="<[^>]+>";
+            String regEx = "<[^>]+>#";
             Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
             Matcher   m   =   p.matcher(article.getSimple());
             String simple=m.replaceAll("").trim();
             int len = (simple.length()>20?20:simple.length());
             article.setSimple(simple.substring(0, len));
-
+            articleService.addArticle(article);
             ArtOfCatalogue artOfCatalogue = new ArtOfCatalogue();
             artOfCatalogue.setArticle_id(article.getId());
             artOfCatalogue.setCatalogue_id(catalogueId);
             articleOfCatalogueService.addArticleOfCatalogue(artOfCatalogue);
-            articleService.addArticle(article);
+
             for(String idStr:labelId){
                 int id = Integer.parseInt(idStr);
                 ArtOfLabel artOfLabel = new ArtOfLabel();
