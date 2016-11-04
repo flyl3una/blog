@@ -17,35 +17,58 @@
     <%@include file="left.jsp"%>
 </div>
 <div class="manage-right">
+    ${error}
     <div class="article-list">
-        <table>
-            <tr>
-                <td>文章</td>
-                <td>分类目录</td>
-                <td>标签</td>
-                <td>日期</td>
-                <td>操作</td>
-            </tr>
-        <c:forEach var="article" items="${articles}" varStatus="status">
-            <%--<div style="border: aqua solid 1px;; border-radius: 5px">--%>
+        <table class="article-list-table">
+            <thead>
                 <tr>
-                    <td>${article.title}</td>
-                    <td>${catalogue[article.id]}</td>
-                    <td>
-                        <c:forEach var="labelName" items="${labels[article.id]}">
-                            <a>labelName</a>
-                        </c:forEach>
-                    </td>
-                    <td>${article.createTime}</td>
-                    <td>
-                        <a onclick="update_article(${article.id})">更改</a>
-                        <a href="/manage/delete_article?id=${article.id}">删除</a>
-                    </td>
+                    <td style="width: 10%">文章</td>
+                    <td style="width: 15%">分类目录</td>
+                    <td style="width: 30%">标签</td>
+                    <td style="width: 30%">日期</td>
+                    <td style="width: 15%">操作</td>
                 </tr>
-            <%--</div>--%>
-        </c:forEach>
+            </thead>
+            <tbody style="background: #e9e9e9">
+                <c:forEach var="article" items="${articles}" varStatus="status">
+                    <tr>
+                        <td>${article.title}</td>
+                        <td>${catalogues[article.id]}</td>
+                        <td>
+                            <c:forEach var="labelName" items="${labels[article.id]}">
+                                <span class="label-span">${labelName}</span>
+                            </c:forEach>
+                        </td>
+                        <td>${article.createTime}</td>
+                        <td>
+                            <a href="/manage/update_article?id=${article.id}">更改</a>
+                            <%--<a onclick="delete_article(${article.id})">删除</a>--%>
+                            <a href="/manage/delete_article?id=${article.id}">删除</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>
 </body>
 </html>
+
+
+<script>
+    function delete_article(id) {
+        $.ajax({
+            type: "GET",
+            url: "/manage/delete_article?id=" + id,
+            success: function (data) {
+                if (data.status = "success") {
+                    console.log("修改成功");
+                } else {
+                    name = data.old_name;
+                    $(id_name).text(name);
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+</script>

@@ -9,4 +9,5 @@ public interface ArticleOfCatalogueService {
     Integer[] findArticlesIdByCatalogueId(int catalogueId);
     Integer findCatalogueIdByArticleId(int articleId);
     void addArticleOfCatalogue(ArtOfCatalogue artOfCatalogue);
+    void deleteArticleOfCatalogue(int articleId);
 }

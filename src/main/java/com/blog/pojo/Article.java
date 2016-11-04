@@ -12,6 +12,7 @@ public class Article {
     private String title;
     private String content;
     private String simple;
+    private String original;
     private Timestamp createTime;
 
     public String getSimple() {
@@ -44,6 +45,14 @@ public class Article {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(String original) {
+        this.original = original;
     }
 
     public Timestamp getCreateTime() {

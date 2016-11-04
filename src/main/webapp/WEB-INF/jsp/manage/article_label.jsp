@@ -80,7 +80,7 @@
                     alert("修改失败");
                 }
             }
-        })
+        });
     }
 
     function selete_all() {

@@ -29,4 +29,9 @@ public class ArticleOfLabelServiceImpl implements ArticleOfLabelService {
     public void addArticleOfLabel(ArtOfLabel artOfLabel) {
         articleOfLabelDao.addArticleOfLabel(artOfLabel);
     }
+
+    @Override
+    public void deleteArticleOfLabel(int articleId) {
+        articleOfLabelDao.deleteArticleOfLabel(articleId);
+    }
 }

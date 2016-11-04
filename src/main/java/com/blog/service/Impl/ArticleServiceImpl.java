@@ -33,8 +33,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void deleteArticle(Article article) {
-        articleDao.deleteArticle(article);
+    public void deleteArticle(int id) {
+        articleDao.deleteArticle(id);
     }
 
     @Override

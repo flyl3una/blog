@@ -12,4 +12,8 @@
     <insert id="addArticleOfLabel" parameterType="com.blog.pojo.ArtOfLabel">
         INSERT INTO article_of_label(article_id, label_id) VALUES(#{article_id}, #{label_id})
     </insert>
+
+    <delete id="deleteArticleOfLabel" parameterType="int">
+        DELETE FROM article_Of_label WHERE article_id=#{articleId}
+    </delete>
 </mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.blog.dao.ArticleDao" >
 
     <insert id="addArticle" useGeneratedKeys="true" keyProperty="id" parameterType="com.blog.pojo.Article">
-        INSERT INTO article(title, content, simple) VALUES (#{title}, #{content}, #{simple})
+        INSERT INTO article(title, content, simple, orginal) VALUES (#{title}, #{content}, #{simple}, #{orginal})
     </insert>
 
     <select id="getAllArticle" resultType="com.blog.pojo.Article">
@@ -14,7 +14,7 @@
         UPDATE article set title=#{title}, content = #{content} where id=#{id}
     </update>
 
-    <delete id="deleteArticle" parameterType="com.blog.pojo.Article">
+    <delete id="deleteArticle" parameterType="int">
         delete from article where id=#{id}
     </delete>
 

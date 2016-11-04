@@ -83,6 +83,7 @@ public class ManageController {
         List<Catalogue> catalogues = catalogueService.getAllCatalogues();
         model.addAttribute("catalogues", catalogues);
         model.addAttribute("labels", labels);
+        model.addAttribute("update", false);
         return "/manage/write_article";
     }
 
@@ -92,7 +93,6 @@ public class ManageController {
                                @RequestParam("labelsId")String labelsId,
                                Model model){
         try{
-//            article.setSimple(article.getSimple().replaceAll("(\r\n|\r|\n|\n\r|\t)", "").trim());
             String[] labelId = labelsId.split(",");
             String regEx = "<[^>]+>#";
             Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
@@ -216,6 +216,37 @@ public class ManageController {
             jsonObject.put("old_name", old_name);
             return jsonObject.toString();
         }
+    }
+
+    @RequestMapping(value = "delete_article", method = RequestMethod.GET)
+    public String deleteArticle(@RequestParam("id")int id, Model model){
+        try{
+            articleService.deleteArticle(id);
+            articleOfCatalogueService.deleteArticleOfCatalogue(id);
+            articleOfLabelService.deleteArticleOfLabel(id);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("status", "success");
+            return "redirect:/manage/article_list";
+        }catch (Exception e){
+            model.addAttribute("error", "文章删除失败");
+            return "redirect:/manage/article_list";
+        }
+    }
+
+    @RequestMapping(value = "update_article", method = RequestMethod.GET)
+    public String updateArticle(@RequestParam("id")int id, Model model){
+        Article article = articleService.findArticleById(id);
+        int catalogueId = articleOfCatalogueService.findCatalogueIdByArticleId(id);
+        Integer[] labelsId = articleOfLabelService.findLabelsIdByArticleId(id);
+        List<Label> labels = labelService.getAllLabels();
+        List<Catalogue> catalogues = catalogueService.getAllCatalogues();
+        model.addAttribute("article", article);
+        model.addAttribute("catalogueId", catalogueId);
+        model.addAttribute("labelsId", labelsId);
+        model.addAttribute("catalogues", catalogues);
+        model.addAttribute("labels", labels);
+        model.addAttribute("update", true);
+        return "/manage/write_article";
     }
 
 }

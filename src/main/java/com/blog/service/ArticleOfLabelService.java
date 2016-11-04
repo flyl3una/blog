@@ -9,4 +9,5 @@ public interface ArticleOfLabelService {
     Integer[] findArticlesIdByLabelId(int labelId);
     Integer[] findLabelsIdByArticleId(int articleId);
     void addArticleOfLabel(ArtOfLabel artOfLabel);
+    void deleteArticleOfLabel(int articleId);
 }
