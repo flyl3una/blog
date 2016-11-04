@@ -30,23 +30,23 @@
                 </tr>
             </thead>
             <tbody style="background: #e9e9e9">
-                <c:forEach var="article" items="${articles}" varStatus="status">
-                    <tr>
-                        <td>${article.title}</td>
-                        <td>${catalogues[article.id]}</td>
-                        <td>
-                            <c:forEach var="labelName" items="${labels[article.id]}">
-                                <span class="label-span">${labelName}</span>
-                            </c:forEach>
-                        </td>
-                        <td>${article.createTime}</td>
-                        <td>
-                            <a href="/manage/update_article?id=${article.id}">更改</a>
+            <c:forEach var="article" items="${articles}" varStatus="status">
+                <tr>
+                    <td>${article.title}</td>
+                    <td>${catalogues[article.id]}</td>
+                    <td>
+                        <c:forEach var="labelName" items="${labels[article.id]}">
+                            <span class="label-span">${labelName}</span>
+                        </c:forEach>
+                    </td>
+                    <td>${article.createTime}</td>
+                    <td>
+                        <a href="/manage/update_article?id=${article.id}">更改</a>
                             <%--<a onclick="delete_article(${article.id})">删除</a>--%>
-                            <a href="/manage/delete_article?id=${article.id}">删除</a>
-                        </td>
-                    </tr>
-                </c:forEach>
+                        <a href="/manage/delete_article?id=${article.id}">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

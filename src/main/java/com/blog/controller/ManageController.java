@@ -219,22 +219,22 @@ public class ManageController {
     }
 
     @RequestMapping(value = "delete_article", method = RequestMethod.GET)
-    public String deleteArticle(@RequestParam("id")int id, Model model){
-        try{
+    public String deleteArticle(@RequestParam("id") int id, Model model) {
+        try {
             articleService.deleteArticle(id);
             articleOfCatalogueService.deleteArticleOfCatalogue(id);
             articleOfLabelService.deleteArticleOfLabel(id);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("status", "success");
             return "redirect:/manage/article_list";
-        }catch (Exception e){
+        } catch (Exception e) {
             model.addAttribute("error", "文章删除失败");
             return "redirect:/manage/article_list";
         }
     }
 
     @RequestMapping(value = "update_article", method = RequestMethod.GET)
-    public String updateArticle(@RequestParam("id")int id, Model model){
+    public String updateArticle(@RequestParam("id") int id, Model model) {
         Article article = articleService.findArticleById(id);
         int catalogueId = articleOfCatalogueService.findCatalogueIdByArticleId(id);
         Integer[] labelsId = articleOfLabelService.findLabelsIdByArticleId(id);

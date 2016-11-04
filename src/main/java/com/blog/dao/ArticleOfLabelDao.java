@@ -14,5 +14,6 @@ public interface ArticleOfLabelDao {
     Integer[] findArticlesIdByLabelId(int labelId);
     Integer[] findLabelsIdByArticleId(int articleId);
     void addArticleOfLabel(ArtOfLabel artOfLabel);
+
     void deleteArticleOfLabel(int articleId);
 }
