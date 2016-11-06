@@ -59,7 +59,7 @@ public class Article {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createrTime) {
-        this.createTime = createrTime;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 }

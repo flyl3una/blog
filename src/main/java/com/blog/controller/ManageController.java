@@ -93,7 +93,7 @@ public class ManageController {
                                @RequestParam("labelsId")String labelsId,
                                Model model){
         try{
-            String[] labelId = labelsId.split(",");
+
             String regEx = "<[^>]+>#";
             Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
             Matcher   m   =   p.matcher(article.getSimple());
@@ -105,13 +105,15 @@ public class ManageController {
             artOfCatalogue.setArticle_id(article.getId());
             artOfCatalogue.setCatalogue_id(catalogueId);
             articleOfCatalogueService.addArticleOfCatalogue(artOfCatalogue);
-
-            for(String idStr:labelId){
-                int id = Integer.parseInt(idStr);
-                ArtOfLabel artOfLabel = new ArtOfLabel();
-                artOfLabel.setArticle_id(article.getId());
-                artOfLabel.setLabel_id(id);
-                articleOfLabelService.addArticleOfLabel(artOfLabel);
+            if (!labelsId.equalsIgnoreCase("")) {
+                String[] labelId = labelsId.split(",");
+                for (String idStr : labelId) {
+                    int id = Integer.parseInt(idStr);
+                    ArtOfLabel artOfLabel = new ArtOfLabel();
+                    artOfLabel.setArticle_id(article.getId());
+                    artOfLabel.setLabel_id(id);
+                    articleOfLabelService.addArticleOfLabel(artOfLabel);
+                }
             }
             return "redirect:/manage/article_list";
         }catch (Exception e){

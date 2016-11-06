@@ -3,7 +3,7 @@
 <mapper namespace="com.blog.dao.ArticleDao" >
 
     <insert id="addArticle" useGeneratedKeys="true" keyProperty="id" parameterType="com.blog.pojo.Article">
-        INSERT INTO article(title, content, simple, orginal) VALUES (#{title}, #{content}, #{simple}, #{orginal})
+        INSERT INTO article(title, content, simple, original) VALUES (#{title}, #{content}, #{simple}, #{original})
     </insert>
 
     <select id="getAllArticle" resultType="com.blog.pojo.Article">
