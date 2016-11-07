@@ -53,27 +53,29 @@ public class ManageController {
 
     @RequestMapping(value = "article_list", method = RequestMethod.GET)
     public String articleList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        List<Article> articles = articleService.getAllArticle();
-        Map<Integer, String>catalogues = new HashMap<Integer, String>();
-        Map<Integer, List<String>>labels = new HashMap<Integer, List<String>>();
-
-        for(int i = (page-1)*10; i < (articles.size()<page*10?articles.size():page*10); i++){
-            Article article = articles.get(i);
-            int catalogueId = articleOfCatalogueService.findCatalogueIdByArticleId(article.getId());
-            Catalogue catalogue = catalogueService.findCatalogueById(catalogueId);
-            catalogues.put(article.getId(), catalogue.getName());
-            Integer[] labelsId= articleOfLabelService.findLabelsIdByArticleId(article.getId());
-            List<String> labelsName = new ArrayList<String>();
-            for(int labelId : labelsId){
-                Label label = labelService.findLabelById(labelId);
-                labelsName.add(label.getName());
+        try {
+            List<Article> articles = articleService.getAllArticle();
+            Map<Integer, String> catalogues = new HashMap<Integer, String>();
+            Map<Integer, List<String>> labels = new HashMap<Integer, List<String>>();
+            for (int i = (page - 1) * 10; i < (articles.size() < page * 10 ? articles.size() : page * 10); i++) {
+                Article article = articles.get(i);
+                int catalogueId = articleOfCatalogueService.findCatalogueIdByArticleId(article.getId());
+                Catalogue catalogue = catalogueService.findCatalogueById(catalogueId);
+                catalogues.put(article.getId(), catalogue.getName());
+                Integer[] labelsId = articleOfLabelService.findLabelsIdByArticleId(article.getId());
+                List<String> labelsName = new ArrayList<String>();
+                for (int labelId : labelsId) {
+                    Label label = labelService.findLabelById(labelId);
+                    labelsName.add(label.getName());
+                }
+                labels.put(article.getId(), labelsName);
             }
-            labels.put(article.getId(), labelsName);
+            model.addAttribute("articles", articles);
+            model.addAttribute("catalogues", catalogues);
+            model.addAttribute("labels", labels);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        model.addAttribute("articles", articles);
-        model.addAttribute("catalogues", catalogues);
-        model.addAttribute("labels", labels);
-
         return "/manage/article_list";
     }
 
@@ -102,15 +104,27 @@ public class ManageController {
             int len = (simple.length()>20?20:simple.length());
             article.setSimple(simple.substring(0, len));
             ArtOfCatalogue artOfCatalogue = new ArtOfCatalogue();
-            artOfCatalogue.setArticle_id(article.getId());
-            artOfCatalogue.setCatalogue_id(catalogueId);
+            if (catalogueId == 0) {
+                try {
+                    catalogueId = catalogueService.findIdByName("");
+                } catch (Exception e) {
+                    Catalogue catalogue = new Catalogue();
+                    catalogue.setName("");
+                    catalogueService.addCatalogue(catalogue);
+                    catalogueId = catalogueService.findIdByName("");
+                }
+            }
             if(article.getId() != 0){
                 articleService.updateArticle(article);
+                artOfCatalogue.setArticle_id(article.getId());
+                artOfCatalogue.setCatalogue_id(catalogueId);
                 articleOfCatalogueService.updateArticleOfCatalogue(artOfCatalogue);
                 articleOfLabelService.deleteArticleOfLabel(article.getId());
             }
             else{
                 articleService.addArticle(article);
+                artOfCatalogue.setArticle_id(article.getId());
+                artOfCatalogue.setCatalogue_id(catalogueId);
                 articleOfCatalogueService.addArticleOfCatalogue(artOfCatalogue);
             }
             if (!labelsId.equalsIgnoreCase("")) {

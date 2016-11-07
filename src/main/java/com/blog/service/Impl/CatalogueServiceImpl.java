@@ -6,6 +6,7 @@ import com.blog.service.CatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,13 @@ public class CatalogueServiceImpl implements CatalogueService {
 
     @Override
     public List<Catalogue> getAllCatalogues() {
-        return catalogueDao.getAllCatalogues();
+        List<Catalogue> list = catalogueDao.getAllCatalogues();
+        List<Catalogue> showList = new ArrayList<Catalogue>();
+        for (Catalogue a : list) {
+            if (!a.getName().equalsIgnoreCase(""))
+                showList.add(a);
+        }
+        return showList;
     }
 
     @Override

@@ -26,6 +26,7 @@
         <div id="cataloguesId" style="float: left;">
             <div style="float: left;">目录：</div>
             <select name="catalogueId" class="select-catalogue" id="select-catalogue-id">
+                <option value="0" id="catalogue-0"></option>
                 <c:forEach var="catalogue" items="${catalogues}" varStatus="status">
                     <option value="${catalogue.id}" id="catalogue-${catalogue.id}">${catalogue.name}</option>
                 </c:forEach>
