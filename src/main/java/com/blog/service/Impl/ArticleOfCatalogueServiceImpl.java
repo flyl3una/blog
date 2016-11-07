@@ -32,6 +32,11 @@ public class ArticleOfCatalogueServiceImpl implements ArticleOfCatalogueService 
     }
 
     @Override
+    public void updateArticleOfCatalogue(ArtOfCatalogue artOfCatalogue) {
+        articleOfCatalogueDao.updateArticleOfCatalogue(artOfCatalogue);
+    }
+
+    @Override
     public void deleteArticleOfCatalogue(int articleId) {
         articleOfCatalogueDao.deleteArticleOfCatalogue(articleId);
     }

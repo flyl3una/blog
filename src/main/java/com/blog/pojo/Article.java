@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  */
 public class Article {
 
-    private int id;
+    private int id=0;
     private String title;
     private String content;
     private String simple;

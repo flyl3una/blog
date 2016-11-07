@@ -18,8 +18,8 @@
 <div class="manage-right">
     <div class="content-title">标签</div>
     <div style="display: inline; float: left;width: 50%">
-    <form action="/manage/add-label" method="post">
-        <div style="margin: 0 0 0 5%">添加标签</div>
+    <form action="/manage/add_label" style="margin: 0 0 0 5%" method="post">
+        <div>添加标签</div>
         <input type="text" name="name" class="input-text">
         <input type="submit" value="添加" class="input-submit">
     </form>

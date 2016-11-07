@@ -23,8 +23,8 @@
             <thead>
                 <tr>
                     <td style="width: 10%">文章</td>
-                    <td style="width: 15%">分类目录</td>
-                    <td style="width: 30%">标签</td>
+                    <td style="width: 20%">分类目录</td>
+                    <td style="width: 25%">标签</td>
                     <td style="width: 30%">日期</td>
                     <td style="width: 15%">操作</td>
                 </tr>

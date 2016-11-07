@@ -11,7 +11,7 @@
     </select>
 
     <update id="updateArticle" parameterType="com.blog.pojo.Article">
-        UPDATE article set title=#{title}, content = #{content} where id=#{id}
+        UPDATE article set title=#{title}, content = #{content}, simple=#{simple}, original=#{original} where id=#{id}
     </update>
 
     <delete id="deleteArticle" parameterType="int">

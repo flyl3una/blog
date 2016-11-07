@@ -82,6 +82,7 @@ public class ManageController {
         List<Label> labels = labelService.getAllLabels();
         List<Catalogue> catalogues = catalogueService.getAllCatalogues();
         model.addAttribute("catalogues", catalogues);
+
         model.addAttribute("labels", labels);
         model.addAttribute("update", false);
         return "/manage/write_article";
@@ -96,15 +97,22 @@ public class ManageController {
 
             String regEx = "<[^>]+>#";
             Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
-            Matcher   m   =   p.matcher(article.getSimple());
+            Matcher   m   =   p.matcher(article.getContent());
             String simple=m.replaceAll("").trim();
             int len = (simple.length()>20?20:simple.length());
             article.setSimple(simple.substring(0, len));
-            articleService.addArticle(article);
             ArtOfCatalogue artOfCatalogue = new ArtOfCatalogue();
             artOfCatalogue.setArticle_id(article.getId());
             artOfCatalogue.setCatalogue_id(catalogueId);
-            articleOfCatalogueService.addArticleOfCatalogue(artOfCatalogue);
+            if(article.getId() != 0){
+                articleService.updateArticle(article);
+                articleOfCatalogueService.updateArticleOfCatalogue(artOfCatalogue);
+                articleOfLabelService.deleteArticleOfLabel(article.getId());
+            }
+            else{
+                articleService.addArticle(article);
+                articleOfCatalogueService.addArticleOfCatalogue(artOfCatalogue);
+            }
             if (!labelsId.equalsIgnoreCase("")) {
                 String[] labelId = labelsId.split(",");
                 for (String idStr : labelId) {

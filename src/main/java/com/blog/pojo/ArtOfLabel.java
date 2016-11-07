@@ -22,4 +22,6 @@ public class ArtOfLabel {
     public void setLabel_id(int label_id) {
         Label_id = label_id;
     }
+
+
 }

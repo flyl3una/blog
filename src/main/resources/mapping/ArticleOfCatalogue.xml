@@ -17,4 +17,8 @@
     <delete id="deleteArticleOfCatalogue" parameterType="int">
         DELETE FROM article_Of_catalogue WHERE article_id=#{articleId}
     </delete>
+
+    <update id="updateArticleOfCatalogue" parameterType="com.blog.pojo.ArtOfCatalogue">
+        UPDATE article_of_catalogue SET catalogue_id=#{catalogue_id} WHERE article_id=#{article_id}
+    </update>
 </mapper>
