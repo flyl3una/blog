@@ -25,8 +25,8 @@
                     <td style="width: 10%">文章</td>
                     <td style="width: 20%">分类目录</td>
                     <td style="width: 25%">标签</td>
-                    <td style="width: 30%">日期</td>
-                    <td style="width: 15%">操作</td>
+                    <td style="width: 25%">日期</td>
+                    <td style="width: 20%">操作</td>
                 </tr>
             </thead>
             <tbody style="background: #e9e9e9">
@@ -41,6 +41,7 @@
                     </td>
                     <td>${article.createTime}</td>
                     <td>
+                        <a href="/article?id=${article.id}">查看</a>
                         <a href="/manage/update_article?id=${article.id}">更改</a>
                             <%--<a onclick="delete_article(${article.id})">删除</a>--%>
                         <a href="/manage/delete_article?id=${article.id}">删除</a>

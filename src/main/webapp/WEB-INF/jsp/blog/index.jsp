@@ -28,9 +28,9 @@
                     ${article.title}
                 </div>
                 <c:forEach var="label" items="${labelsMap[article.id]}">
-                <div class="label article-label">
+                <span class="article-label">
                         ${label}
-                </div>
+                </span>
                 </c:forEach>
                 <div class="article-simple">
                     ${article.simple}...

@@ -97,11 +97,12 @@ public class ManageController {
                                Model model){
         try{
 
-            String regEx = "<[^>]+>#";
+            String regEx = "<[^>]+>";
             Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
             Matcher   m   =   p.matcher(article.getContent());
             String simple=m.replaceAll("").trim();
-            int len = (simple.length()>20?20:simple.length());
+            simple = simple.replaceAll("#", "");
+            int len = (simple.length()>50?50:simple.length());
             article.setSimple(simple.substring(0, len));
             ArtOfCatalogue artOfCatalogue = new ArtOfCatalogue();
             if (catalogueId == 0) {
