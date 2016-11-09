@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminDao {
     Admin findAdminByUsername(String username);
-
+    void addAdmin(Admin admin);
 }

@@ -21,4 +21,7 @@ public class AdminServiceImpl implements AdminService {
         Admin admin = adminDao.findAdminByUsername(username);
         return admin;
     }
+    public void addAdmin(Admin admin){
+        adminDao.addAdmin(admin);
+    }
 }

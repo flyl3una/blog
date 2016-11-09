@@ -6,4 +6,8 @@
         SELECT username, password, email FROM admin WHERE username=#{username}
     </select>
 
+    <insert id="addAdmin" parameterType="com.blog.pojo.Admin">
+        INSERT INTO admin(username, password, email) VALUES(#{username}, #{password}, #{email})
+    </insert>
+
 </mapper>

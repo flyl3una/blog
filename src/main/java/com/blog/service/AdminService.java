@@ -10,4 +10,5 @@ import com.blog.pojo.Admin;
 public interface AdminService {
 
     Admin findAdminByUsername(String username);
+    void addAdmin(Admin admin);
 }

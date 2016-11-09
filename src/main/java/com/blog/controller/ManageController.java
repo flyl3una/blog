@@ -98,9 +98,13 @@ public class ManageController {
         try{
 
             String regEx = "<[^>]+>";
+            String regImg = "(!\\[\\])(\\(.*\\))";
             Pattern   p   =   Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
+            Pattern   pImg   =   Pattern.compile(regImg, Pattern.CASE_INSENSITIVE);
             Matcher   m   =   p.matcher(article.getContent());
             String simple=m.replaceAll("").trim();
+            Matcher   mImg   =   pImg.matcher(simple);
+            simple=mImg.replaceAll("").trim();
             simple = simple.replaceAll("#", "");
             int len = (simple.length()>50?50:simple.length());
             article.setSimple(simple.substring(0, len));

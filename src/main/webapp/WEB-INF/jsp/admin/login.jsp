@@ -9,9 +9,10 @@
 <html>
 <head>
     <title>Login</title>
+    <script src="/css/admin.css"></script>
 </head>
 <body>
-<form action="/admin/login" method="post">
+<form action="/admin/login" method="post" class="login-form">
     用户名：<input name="username" type="text" height="20"><br>
     邮箱：<input name="email" type="email" height="30"><br>
     密码：<input name="password" type="password" height="20"><br>
