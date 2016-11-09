@@ -9,14 +9,17 @@
 <html>
 <head>
     <title>Login</title>
-    <script src="/css/admin.css"></script>
+    <link rel="stylesheet" href="/css/admin.css"/>
 </head>
 <body>
 <form action="/admin/login" method="post" class="login-form">
-    用户名：<input name="username" type="text" height="20"><br>
-    邮箱：<input name="email" type="email" height="30"><br>
-    密码：<input name="password" type="password" height="20"><br>
-    <input name="submit" type="submit">
+    <span>用户名：</span>
+    <div><input name="username" type="text" height="20" class="input-text"></div>
+    <span>密码：</span>
+    <div><input name="password2" type="password" height="20" class="input-text"></div>
+    <input name="submit" type="submit" value="登陆" class="input-submit">
+    <a>忘记密码</a>
+    <a>找回密码</a>
 </form>
 </form>
 <div style="color: #FFFFFF; font-size:30px;">

@@ -21,7 +21,7 @@
     <div><input name="password" type="password" height="20" class="input-text"></div>
     <span>确认密码：</span>
     <div><input name="password2" type="password" height="20" class="input-text"></div>
-    <input name="submit" type="submit" value="注册">
+    <input name="submit" type="submit" value="注册" class="input-submit">
 </form>
 </form>
 <div style="color: #FFFFFF; font-size:30px;">
