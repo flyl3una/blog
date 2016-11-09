@@ -16,10 +16,10 @@
     <span>用户名：</span>
     <div><input name="username" type="text" height="20" class="input-text"></div>
     <span>密码：</span>
-    <div><input name="password2" type="password" height="20" class="input-text"></div>
+    <div><input name="password" type="password" height="20" class="input-text"></div>
     <input name="submit" type="submit" value="登陆" class="input-submit">
-    <a>忘记密码</a>
-    <a>找回密码</a>
+    <a class="register" href="/admin/register">注册</a>
+    <a class="find-pwd" href="/admin/find_pwd">找回密码</a>
 </form>
 </form>
 <div style="color: #FFFFFF; font-size:30px;">

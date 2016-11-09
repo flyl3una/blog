@@ -126,10 +126,17 @@ public class UploadFileController {
             String thumbName = System.currentTimeMillis() + "." + suffix;
             FileOutputStream fos = new FileOutputStream(rootPath+File.separator+thumbName);
 //            thumbnail(realFile, 960, 870, fos);
-            thumbnail_w_h(realFile, 900, 600, fos);
-            imgResult.setSuccess(1);
-            imgResult.setMessage("上传成功");
-            imgResult.setUrl("/upload/images/"+thumbName);
+            BufferedImage bi = ImageIO.read(realFile);
+            if (bi.getWidth() > 900 || bi.getHeight() > 600) {
+                thumbnail_w_h(realFile, 900, 600, fos);
+                imgResult.setSuccess(1);
+                imgResult.setMessage("上传成功");
+                imgResult.setUrl("/upload/images/" + thumbName);
+            } else {
+                imgResult.setSuccess(1);
+                imgResult.setMessage("上传成功");
+                imgResult.setUrl("/upload/images/" + newImgName);
+            }
             return imgResult;
         }catch (Exception e){
             e.printStackTrace();

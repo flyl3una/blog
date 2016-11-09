@@ -46,15 +46,15 @@ li.catalogue {
     display: block;
     min-width: 1001px;
     /*margin: 0 200px 0 auto;*/
-    width: 55%;
+    width: 45%;
     margin: 0 0 0 13%;
 }
 
 .content-right{
-    float: left;
-    width: 20%;
+    float: right;
+    width: 16%;
     /*padding: 0 5% 0 0;*/
-    /*margin: 0 auto 0 auto;*/
+    margin: 0 16% 0 auto;
     display: block;
     background: #f5f5f5;
     -webkit-box-sizing: inherit;
@@ -73,7 +73,7 @@ li.catalogue {
     border:solid #eeeeee 1px;
     min-width: 1000px;
     border-radius: 3px;
-    margin: 0 5% 30px auto;
+    margin: 0 0 30px auto;
     background: #f5f5f5;
     padding:0 10px 10px 10px;
     -webkit-box-sizing: inherit;

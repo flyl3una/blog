@@ -108,4 +108,9 @@ public class AdminController {
             return "redirect:/manage/index";
         }
     }
+
+    @RequestMapping(value = "find_pwd", method = RequestMethod.GET)
+    public String findPwd() {
+        return "/admin/find_pwd";
+    }
 }
