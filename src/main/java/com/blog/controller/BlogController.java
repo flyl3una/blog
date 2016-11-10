@@ -117,5 +117,9 @@ public class BlogController {
         return "/blog/index";
     }
 
-
+//    @RequestMapping(value = "search", method = RequestMethod.GET)
+//    public String search(Model model, @RequestParam("text")String text){
+//
+//
+//    }
 }
