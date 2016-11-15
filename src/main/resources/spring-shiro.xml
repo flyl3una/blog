@@ -5,30 +5,12 @@
 
     <!--自定义Realm-->
     <bean id="myRealm" class="com.blog.shiro.MyRealm">
-        <!--<property name="credentialsMatcher">-->
-            <!--&lt;!&ndash; 密码加密验证方式 &ndash;&gt;-->
-            <!--<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
-                <!--<property name="hashAlgorithmName" value="MD5"/>-->
-                <!--<property name="hashIterations" value="3" />-->
-                <!--<property name="storedCredentialsHexEncoded" value="true" />-->
-            <!--</bean>-->
-        <!--</property>-->
     </bean>
-
-    <!-- 凭证匹配器 -->
-    <!--<bean id="credentialsMatcher"-->
-          <!--class="com.firstelite.cq.util.RetryLimitHashedCredentialsMatcher">-->
-        <!--<constructor-arg ref="cacheManager" />-->
-        <!--<property name="hashAlgorithmName" value="md5" />-->
-        <!--<property name="hashIterations" value="3" />-->
-        <!--<property name="storedCredentialsHexEncoded" value="true" />-->
-    <!--</bean>-->
 
     <!--安全管理器-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
     </bean>
-
 
     <!--shiro过滤器，核心-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -43,15 +25,10 @@
         <property name="filterChainDefinitions">
             <value>
                 <!--anno表示匿名访问，不需要认证及授权-->
-                <!--/admin/login=anon-->
                 <!--authc表示需要认证，没有进行身份认证不能进行访问-->
                 /admin/**=anon
                 /manage/**=authc
                 /editor/**=authc
-                <!--/upload/**authc-->
-                <!--/*=anon-->
-                <!--/**=anon-->
-                <!--/manage/index=anthc-->
             </value>
         </property>
     </bean>
@@ -64,6 +41,5 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
-
 
 </beans>

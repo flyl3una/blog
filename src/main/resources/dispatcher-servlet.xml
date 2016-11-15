@@ -10,14 +10,19 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="com.blog"/>
 
+    <!--视图模式配置-->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--定义controller的map返回结果跳转前缀-->
         <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--定义跳转后缀-->
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--配置资源文件映射-->
     <mvc:resources mapping="/js/**" location="/WEB-INF/static/js/"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/static/images/"/>
     <mvc:resources mapping="/css/**" location="/WEB-INF/static/css/"/>
@@ -35,6 +40,5 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
     </bean>
-
 
 </beans>

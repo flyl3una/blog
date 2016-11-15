@@ -38,10 +38,6 @@
             <bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
                 <property name="features">
                     <list>
-                        <!--设置null值也要输出，fastjson默认是关闭的-->
-                        <!--<value>WriteMapNullValue</value>-->
-                        <!--设置使用文本方式输出日期，fastjson默认是long-->
-                        <!--<value>WriteDateUseDateFormat</value>-->
                         <value>AllowArbitraryCommas</value>
                         <value>AllowUnQuotedFieldNames</value>
                         <value>DisableCircularReferenceDetect</value>
@@ -52,6 +48,10 @@
         </property>
     </bean>
 
+    <!--默认配置-->
+    <!--<mvc:annotation-driven/>-->
+
+    <!--fastjson配置-->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
             <ref bean="stringHttpMessageConverter" />

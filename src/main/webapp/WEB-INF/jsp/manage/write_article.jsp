@@ -46,8 +46,6 @@
                           <%--onmouseout="write_simple()" id="article-content">${article.original}</textarea>--%>
                 <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
                 <textarea class="editormd-html-textarea" name="content" id="content"></textarea>
-                <%--<textarea class="hidden" name="simple" id="simple"></textarea>--%>
-                <%--<textarea class="hidden" name="original" id="original"></textarea>--%>
             </div>
         </div>
         <input type="submit" value="发布" class="input-submit" style="margin-left: 5%">
@@ -66,8 +64,11 @@
             syncScrolling : "single",
             //你的lib目录的路径
             path    : "<%=request.getContextPath()%>/editor/lib/",
+            //下面3行为配置上传图片
             imageUpload : true,
+            //允许上传格式
             imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            //上传路径
             imageUploadURL : "/uploadImg",
             //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
             saveHTMLToTextarea : true
