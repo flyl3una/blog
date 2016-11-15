@@ -12,7 +12,6 @@
 <body>
 
 <div class="top">
-    <%--<h1>HEAD</h1>--%>
     <p class="head-text">Welcome To Luna's Blog</p>
     <%--<img src="/images/background.jpg">--%>
 </div>
