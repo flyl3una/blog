@@ -12,5 +12,5 @@
 ![](https://github.com/flyl3una/blog/blob/master/src/main/webapp/WEB-INF/upload/images/14.png)
 
 
-小菜博客地址：
+小菜鸟的博客地址：
 http://www.flyl3una.cc/
