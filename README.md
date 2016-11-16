@@ -9,4 +9,4 @@
 后台管理
 ![](https://github.com/flyl3una/blog/blob/master/src/main/webapp/WEB-INF/upload/images/16.png)
 登录界面
-![](https://github.com/flyl3una/blog/blob/master/src/main/webapp/WEB-INF/upload/images/15.png)
+![](https://github.com/flyl3una/blog/blob/master/src/main/webapp/WEB-INF/upload/images/14.png)
