@@ -12,5 +12,5 @@
 ![](https://github.com/flyl3una/blog/blob/master/src/main/webapp/WEB-INF/upload/images/14.png)
 
 
-小菜鸟的博客地址：
-http://www.flyl3una.cc/
+文章地址：
+http://www.flyl3una.cc/2016/11/13/ssmspringmvcspringmybatis%E7%AE%80%E6%98%93%E5%8D%9A%E5%AE%A2/
